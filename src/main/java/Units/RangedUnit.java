@@ -1,6 +1,14 @@
 package Units;
 
+enum State{
+    FIRST_ATTACK,
+    SECOND_ATTACK,
+    THIRD_ATTACK
+}
+
 public class RangedUnit extends Unit{
+
+    private State myState  = State.FIRST_ATTACK;
 
     /**
      * A constructor for the RangedUnit
@@ -29,7 +37,28 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
-        return 3;
+        int AttackBonus = 0;
+        switch(this.myState){
+            case FIRST_ATTACK:
+                AttackBonus = 6;
+                this.myState = State.SECOND_ATTACK;
+                break;
+
+            case SECOND_ATTACK:
+                AttackBonus = 4;
+                this.myState = State.THIRD_ATTACK;
+                break;
+
+            case THIRD_ATTACK:
+                AttackBonus = 2;
+                break;
+
+            default:
+                System.out.println("something went wrong");
+                break;
+        }
+
+        return AttackBonus;
     }
 
     /**
