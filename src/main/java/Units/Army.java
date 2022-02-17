@@ -1,6 +1,8 @@
 package Units;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Random;
 
 public class Army {
 
@@ -39,6 +41,33 @@ public class Army {
             return !this.units.isEmpty();
         }
 
+    public ArrayList<Unit> getAllUnits(){
+        return this.units;
+    }
 
+    public Unit getRandom(){
+        Random random = new Random();
+        return this.units.get(random.nextInt(this.units.size()));
+    }
+
+    @Override
+    public String toString() {
+        return "Army{" +
+                "units=" + units +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Army army = (Army) o;
+        return Objects.equals(units, army.units) && Objects.equals(name, army.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(units, name);
     }
 }
