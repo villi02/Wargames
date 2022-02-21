@@ -28,5 +28,6 @@ class RangedUnitTest {
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
+        assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
     }
 }
