@@ -37,28 +37,7 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
-        int AttackBonus = 0;
-        switch(this.myState){
-            case FIRST_ATTACK:
-                AttackBonus = 6;
-                this.myState = State.SECOND_ATTACK;
-                break;
-
-            case SECOND_ATTACK:
-                AttackBonus = 4;
-                this.myState = State.THIRD_ATTACK;
-                break;
-
-            case THIRD_ATTACK:
-                AttackBonus = 2;
-                break;
-
-            default:
-                System.out.println("something went wrong");
-                break;
-        }
-
-        return AttackBonus;
+       return 3;
     }
 
     /**
@@ -69,7 +48,29 @@ public class RangedUnit extends Unit{
     @Override
     //Not sure as to where i'll insert the logic to the defence bonus, set the temporary return value to the standard value
     public int getDefenceBonus() {
-        return 2;
+
+        int defenceBonus = 0;
+        switch(this.myState){
+            case FIRST_ATTACK:
+                defenceBonus = 6;
+                this.myState = State.SECOND_ATTACK;
+                break;
+
+            case SECOND_ATTACK:
+                defenceBonus = 4;
+                this.myState = State.THIRD_ATTACK;
+                break;
+
+            case THIRD_ATTACK:
+                defenceBonus = 2;
+                break;
+
+            default:
+                System.out.println("something went wrong");
+                break;
+        }
+        return defenceBonus;
+
         }
 }
 
