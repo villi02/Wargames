@@ -15,7 +15,11 @@ public class Army {
     }
 
     public Army(ArrayList<Unit> units, String name) {
-        this.units = units;
+
+        for (Unit unit: units){
+            this.units.add(unit);
+        }
+
         this.name = name;
     }
 

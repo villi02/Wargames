@@ -30,4 +30,9 @@ class CommanderUnitTest {
     void getDefenceBonus() {
         assertEquals(1, cody.getDefenceBonus());
     }
+
+    @Test
+    void theString(){
+        assertEquals(String.format("Unit- name: {0}, health: {1}, attack: {2}, armor: {3} ", "Cody", 69, 25, 15), cody.toString());
+    }
 }
