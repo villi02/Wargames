@@ -1,6 +1,9 @@
 package Units;
 
+
 public class CavalryUnit extends Unit{
+    private State myState  = State.FIRST_ATTACK;
+
     /**
      * A constructor for a CavalryUnit
      * @param name the name of the Unit as a string
@@ -28,7 +31,23 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
-        return 2;
+        int attackBonus = 0;
+        switch(this.myState){
+            case FIRST_ATTACK:
+                attackBonus = 4 + 2;
+                this.myState = State.SECOND_ATTACK;
+                break;
+
+            case SECOND_ATTACK:
+                attackBonus = 2;
+                break;
+
+            default:
+                System.out.println("something went wrong");
+                break;
+        }
+        return attackBonus;
+
     }
 
     /**

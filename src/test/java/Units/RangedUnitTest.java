@@ -3,10 +3,12 @@ package Units;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.ranges.Range;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RangedUnitTest {
+
 
     RangedUnit archer;
 
@@ -29,5 +31,23 @@ class RangedUnitTest {
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(), "third defence bonus");
+    }
+
+
+    @Test
+    void RangedUnit() {
+        RangedUnit ranger = new RangedUnit("William", 69, 3, 6);
+        assertEquals("William", ranger.getName());
+        assertEquals(69, ranger.getHealth());
+        assertEquals(3, ranger.getAttack());
+        assertEquals(6, ranger.getArmor());
+        assertEquals(6, ranger.getDefenceBonus(), "First defence bonus");
+        assertEquals(4, ranger.getDefenceBonus(), "Second defence bonus");
+        assertEquals(2, ranger.getDefenceBonus(), "Third defence bonus");
+    }
+
+    @Test
+    void getName() {
+        assertEquals("William", archer.getName());
     }
 }

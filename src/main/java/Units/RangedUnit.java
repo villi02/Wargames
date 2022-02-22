@@ -1,10 +1,6 @@
 package Units;
 
-enum State{
-    FIRST_ATTACK,
-    SECOND_ATTACK,
-    THIRD_ATTACK
-}
+
 
 public class RangedUnit extends Unit{
 

@@ -2,6 +2,12 @@ package Units;
 
 public abstract class Unit {
 
+    enum State{
+        FIRST_ATTACK,
+        SECOND_ATTACK,
+        THIRD_ATTACK
+    }
+
     /**
      * Initializing variables
      */
@@ -68,7 +74,7 @@ public abstract class Unit {
      */
     @Override
     public String toString() {
-        return String.format("Units.Unit name: {0}, health: {1}, attack: {2}, armor: {3} ", getName(), getHealth(), getAttack(), getArmor());
+        return String.format("Unit- name: {0}, health: {1}, attack: {2}, armor: {3} ", getName(), getHealth(), getAttack(), getArmor());
     }
 
     /**
