@@ -8,7 +8,7 @@ public class CommanderUnit extends CavalryUnit{
      * @param attack the attack damage of a unit as an int
      * @param armor the defensive value of a unit as an int
      */
-    public CommanderUnit(String name, int health, int attack, int armor) {
+    public CommanderUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
     }
 
@@ -17,7 +17,7 @@ public class CommanderUnit extends CavalryUnit{
      * @param name the name of the Unit as a string
      * @param health the health points of a unit as an int
      */
-    public CommanderUnit(String name, int health) {
+    public CommanderUnit(String name, int health) throws Exception {
         super(name, health, 25, 15);
     }
 

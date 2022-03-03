@@ -13,7 +13,7 @@ class RangedUnitTest {
     RangedUnit archer;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws Exception {
         archer = new RangedUnit("William", 69);
     }
 
@@ -35,7 +35,7 @@ class RangedUnitTest {
 
 
     @Test
-    void RangedUnit() {
+    void RangedUnit() throws Exception {
         RangedUnit ranger = new RangedUnit("William", 69, 3, 6);
         assertEquals("William", ranger.getName());
         assertEquals(69, ranger.getHealth());

@@ -21,7 +21,10 @@ public abstract class Unit {
      * @param attack an int that represents the attack value of a units weapon
      * @param armor an int that represents the defensive value of a unit when attacked
      */
-    public Unit(String name, int health, int attack, int armor) {
+    public Unit(String name, int health, int attack, int armor) throws Exception {
+        if (health <= 0 || attack <= 0 || armor <=0 ){
+            throw new Exception("Must be positive integers");
+        }
         this.name = name;
         this.health = health;
         this.attack = attack;
@@ -65,7 +68,14 @@ public abstract class Unit {
      * @param health The health points as an int
      */
     public void setHealth(int health) {
-        this.health = health;
+        if (health <= 0)
+        {
+            this.health = 0;
+        }
+        else
+        {
+            this.health = health;
+        }
     }
 
     /**

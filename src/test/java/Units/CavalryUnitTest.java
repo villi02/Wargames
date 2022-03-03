@@ -7,9 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class CavalryUnitTest {
     CavalryUnit cav = new CavalryUnit("Cav", 69);
 
+    CavalryUnitTest() throws Exception {
+    }
+
 
     @Test
-    void CavalryUnit() {
+    void CavalryUnit() throws Exception {
         CavalryUnit zeus = new CavalryUnit("Zeus", 69, 3, 6);
         assertEquals("Zeus", zeus.getName());
         assertEquals(69, zeus.getHealth());

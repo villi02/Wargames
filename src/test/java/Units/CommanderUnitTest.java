@@ -6,10 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CommanderUnitTest {
 
-    CommanderUnit cody = new CommanderUnit("Cody", 69);
+    CommanderUnit cody;
+
+    {
+        try {
+            cody = new CommanderUnit("Cody", 69);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
-    void CommanderUnit(){
+    void CommanderUnit() throws Exception {
         CommanderUnit commando = new CommanderUnit("Commando", 69, 420, 600);
         assertEquals("Commando", commando.getName());
         assertEquals(69, commando.getHealth());

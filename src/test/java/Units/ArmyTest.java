@@ -15,8 +15,7 @@ class ArmyTest {
 
     Army elves = new Army("elves");
     @BeforeEach
-    void initArmy()
-    {
+    void initArmy() throws Exception {
         for (int i = 0; i < 4; i++) {
 
             elves.units.add(new RangedUnit(String.format("Ranged nr: {0}", i), 69));
@@ -31,13 +30,13 @@ class ArmyTest {
     }
 
     @Test
-    void add() {
+    void add() throws Exception {
         elves.add(new RangedUnit("test trooper", 3));
         assertEquals(17, elves.units.size());
     }
 
     @Test
-    void addAll() {
+    void addAll() throws Exception {
         ArrayList<Unit> testunits = new ArrayList<>();
         for (int i = 0; i < 5; i++)
         {

@@ -9,7 +9,7 @@ public class InfantryUnit extends Unit {
      * @param attack the attack damage of a unit as an int
      * @param armor the defensive value of a unit as an int
      */
-    public InfantryUnit(String name, int health, int attack, int armor) {
+    public InfantryUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
     }
 
@@ -18,7 +18,7 @@ public class InfantryUnit extends Unit {
      * @param name the name of the Unit as a string
      * @param health the health points of a unit as an int
      */
-    public InfantryUnit(String name, int health){
+    public InfantryUnit(String name, int health) throws Exception {
         super(name, health, 15, 10);
     }
 

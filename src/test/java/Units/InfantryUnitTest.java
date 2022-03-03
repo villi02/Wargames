@@ -8,8 +8,11 @@ class InfantryUnitTest {
 
     InfantryUnit infant = new InfantryUnit("Joe", 69);
 
+    InfantryUnitTest() throws Exception {
+    }
+
     @Test
-    void InfantryUnit(){
+    void InfantryUnit() throws Exception {
         InfantryUnit madJack = new InfantryUnit("Mad Jack", 25, 4, 3);
         assertEquals("Mad Jack", madJack.getName());
         assertEquals(25, madJack.getHealth());
