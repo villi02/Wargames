@@ -11,7 +11,7 @@ public class Army {
 
     public Army(String name) {
         this.name = name;
-        this.units = null;
+        this.units = new ArrayList<>();
     }
 
     public Army(ArrayList<Unit> units, String name) {

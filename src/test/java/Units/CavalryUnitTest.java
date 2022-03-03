@@ -8,7 +8,6 @@ class CavalryUnitTest {
     CavalryUnit cav = new CavalryUnit("Cav", 69);
 
 
-
     @Test
     void CavalryUnit() {
         CavalryUnit zeus = new CavalryUnit("Zeus", 69, 3, 6);
