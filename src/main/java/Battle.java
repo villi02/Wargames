@@ -1,4 +1,7 @@
 import Units.*;
+
+import java.util.Random;
+
 public class Battle {
 
     private Army armyOne, armyTwo;
@@ -9,24 +12,55 @@ public class Battle {
 
     private Battle.State myState  = State.ARMY1_ATTACK;
 
-    public Battle(Army armyOne, Army armyTwo) {
+    public Battle(Army armyOne, Army armyTwo) throws Exception {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
     }
 
-    public void simulate(){
-        Army armyoneCopy = new Army(armyOne.getAllUnits(), "copy1");
-        Army armytwoCopy = new Army(armyTwo.getAllUnits(), "copy2");
-        while (armyOne.hasUnits() && armyTwo.hasUnits())
+    public Army simulate(){
+        Army armyOneCopy = new Army(this.armyOne);
+        Army armyTwoCopy = new Army(this.armyTwo);
+        Random random = new Random();
+        while (armyOneCopy.hasUnits() && armyTwoCopy.hasUnits())
         {
-            Unit armyoneTrooper = armyOne.getRandom();
-            Unit armytwoTrooper = armyTwo.getRandom();
+            Unit armyoneTrooper = armyOneCopy.getRandom();
+            Unit armytwoTrooper = armyTwoCopy.getRandom();
 
             switch(myState){
                 case ARMY1_ATTACK:
-                    // Gonna make a method to deal with attacks and defences
+                    if (!attack(armyoneTrooper, armytwoTrooper)){
+                        armyTwoCopy.remove(armytwoTrooper);
+                }
+                    this.myState = State.ARMY2_ATTACK;
+                    break;
+
+                case ARMY2_ATTACK:
+                    if(!attack(armytwoTrooper, armyoneTrooper)){
+                        armyOneCopy.remove(armyoneTrooper);
+                    }
+                    this.myState = State.ARMY1_ATTACK;
+                    break;
+
+                default:
+                    System.out.println("Something went wrong");
+                    break;
             }
         }
+        if (armyOneCopy.hasUnits()){
+            return armyOne;
+        }
+        return armyTwo;
+    }
+
+    public boolean attack(Unit attacker, Unit defender)
+    {
+        int newHealth = defender.getHealth() - (attacker.getAttack() + attacker.getAttackBonus()) + (defender.getArmor() + defender.getDefenceBonus());
+        if (!(newHealth > 0)){
+            defender.setHealth(0);
+            return false;
+        }
+        defender.setHealth(newHealth);
+        return true;
     }
 
     @Override

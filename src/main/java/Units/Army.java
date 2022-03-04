@@ -13,11 +13,16 @@ public class Army {
         this.name = name;
         this.units = new ArrayList<>();
     }
+    public Army(Army army){
+        this.name = army.getName();
+        this.units = army.getAllUnits();
+    }
 
     public Army(ArrayList<Unit> units, String name) {
 
-        for (Unit unit: units){
+        for (Unit unit: units) {
             this.units.add(unit);
+            System.out.println("adding units");
         }
 
         this.name = name;
