@@ -6,18 +6,39 @@ import java.util.Random;
 
 public class Army {
 
+    /**
+     * Initialize variables
+     */
     ArrayList<Unit> units;
     String name;
 
+    /**
+     * Constructor for Amry class
+     * @param name name of army
+     */
     public Army(String name) {
         this.name = name;
         this.units = new ArrayList<>();
     }
+
+    /**
+     * Copy constructor for an army object
+     * @param army the army you want to copy
+     */
     public Army(Army army){
         this.name = army.getName();
-        this.units = army.getAllUnits();
+        this.units = new ArrayList<>();
+        for (Unit unit: army.getAllUnits())
+        {
+            this.units.add(unit);
+        }
     }
 
+    /**
+     * Constructor for Army class
+     * @param units An Arraylist<Units> with the Units to be included in the army
+     * @param name  The name of the army
+     */
     public Army(ArrayList<Unit> units, String name) {
 
         for (Unit unit: units) {
@@ -28,36 +49,65 @@ public class Army {
         this.name = name;
     }
 
+    /**
+     * A method to get the name of the Army
+     * @return The name of the Army
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * A method to add a unit to the Army
+     * @param unit the unit to be added to the Army
+     */
     public void add(Unit unit){
         this.units.add(unit);
     }
 
+    /**
+     * A method to add multiple units to the Army
+     * @param units An Arraylist<Units> with the units to be added to the Army
+     */
     public void addAll(ArrayList<Unit> units){
         for (Unit unit : units) {
             this.units.add(unit);
         }
         }
 
+    /**
+     * A method to remove a Unit from the Army
+     * @param unit The Unit to be removed
+     */
     public void remove(Unit unit){
             this.units.remove(unit);
         }
 
+    /**
+     * A method to check if the Army has units
+     * @return A boolean, true if Army has units
+     */
     public boolean hasUnits(){
             return !this.units.isEmpty();
         }
 
+    /**
+     * A method to get all units in an Army
+     * @return The units as an Arraylist<Unit>
+     */
     public ArrayList<Unit> getAllUnits(){
         return this.units;
     }
 
+    /**
+     * A method to get a random Unit from the Army
+     * @return The Unit
+     */
     public Unit getRandom(){
         Random random = new Random();
         return this.units.get(random.nextInt(this.units.size()));
     }
+
 
     @Override
     public String toString() {

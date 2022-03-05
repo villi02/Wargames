@@ -36,6 +36,5 @@ class InfantryUnitTest {
     void setHealth(){
         infant.setHealth(420);
         assertEquals(420, infant.getHealth());
-        infant.setHealth(69);
     }
 }

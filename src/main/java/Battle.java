@@ -4,23 +4,42 @@ import java.util.Random;
 
 public class Battle {
 
+    /**
+     * Initialize variables
+     */
     private Army armyOne, armyTwo;
     enum State{
         ARMY1_ATTACK,
         ARMY2_ATTACK
     }
 
-    private Battle.State myState  = State.ARMY1_ATTACK;
+    Random random = new Random();
+    private Battle.State myState;
 
+    /**
+     * A constructor for the Battle class
+     * @param armyOne An army to be featured in the Battle
+     * @param armyTwo An army to be featured in the Battle (can be the same as the first Army)
+     * @throws Exception
+     */
     public Battle(Army armyOne, Army armyTwo) throws Exception {
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
     }
 
+    /**
+     * A method to simulate a battle between two armies
+     * @return An Army as the victorious Army
+     */
     public Army simulate(){
+        myState = State.values()[random.nextInt( 2)];
+
+        System.out.println("First attacking" + myState);
         Army armyOneCopy = new Army(this.armyOne);
+        System.out.println("Armycopy 1 size:" + armyOneCopy.getAllUnits().size());
         Army armyTwoCopy = new Army(this.armyTwo);
-        Random random = new Random();
+        System.out.println("Armycopy 2 size:" + armyTwoCopy.getAllUnits().size());
+
         while (armyOneCopy.hasUnits() && armyTwoCopy.hasUnits())
         {
             Unit armyoneTrooper = armyOneCopy.getRandom();
@@ -52,6 +71,12 @@ public class Battle {
         return armyTwo;
     }
 
+    /**
+     * A method to attack a Unit
+     * @param attacker A Unit that's going to attack
+     * @param defender A Unit that's going to be attacked
+     * @return A boolean, returns false if the unit dies
+     */
     public boolean attack(Unit attacker, Unit defender)
     {
         int newHealth = defender.getHealth() - (attacker.getAttack() + attacker.getAttackBonus()) + (defender.getArmor() + defender.getDefenceBonus());

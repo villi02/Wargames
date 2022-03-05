@@ -1,5 +1,6 @@
 package Units;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,6 +9,8 @@ class CommanderUnitTest {
 
     CommanderUnit cody;
 
+    @BeforeEach
+     void testData()
     {
         try {
             cody = new CommanderUnit("Cody", 69);
@@ -29,6 +32,15 @@ class CommanderUnitTest {
     }
 
     @Test
+    void CommanderUnitNegative() throws Exception {
+        Army test = new Army("test");
+        assertThrows(Exception.class, () -> {
+            test.add(new CommanderUnit("Exception", -69));
+        });
+    }
+
+
+    @Test
     void getAttackBonus(){
         assertEquals(6, cody.getAttackBonus());
         assertEquals(2, cody.getAttackBonus());
@@ -41,6 +53,6 @@ class CommanderUnitTest {
 
     @Test
     void theString(){
-        assertEquals(String.format("Unit- name: {0}, health: {1}, attack: {2}, armor: {3} ", "Cody", 69, 25, 15), cody.toString());
+        assertEquals(String.format("Unit- name: %s, health: %d, attack: %d, armor: %d ", "Cody", 69, 25, 15), cody.toString());
     }
 }

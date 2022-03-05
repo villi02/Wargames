@@ -1,18 +1,20 @@
 package Units;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CavalryUnitTest {
-    CavalryUnit cav = new CavalryUnit("Cav", 69);
+    CavalryUnit cav;
 
-    CavalryUnitTest() throws Exception {
+    @BeforeEach
+    void testData() throws Exception{
+        cav = new CavalryUnit("Cav", 69);
     }
 
-
     @Test
-    void CavalryUnit() throws Exception {
+    void CavalryUnitTest() throws Exception {
         CavalryUnit zeus = new CavalryUnit("Zeus", 69, 3, 6);
         assertEquals("Zeus", zeus.getName());
         assertEquals(69, zeus.getHealth());
@@ -24,13 +26,22 @@ class CavalryUnitTest {
     }
 
     @Test
-    void getAttackBonus() {
+    void CavalryUnitNegativeTest() throws Exception {
+        Army test = new Army("test");
+        assertThrows(Exception.class, () -> {
+            test.add(new CavalryUnit("Exception", -69));
+        });
+    }
+
+
+    @Test
+    void getAttackBonusTest() {
         assertEquals(6, cav.getAttackBonus());
         assertEquals(2, cav.getAttackBonus());
     }
 
     @Test
-    void getDefenceBonus() {
+    void getDefenceBonusTest() {
         assertEquals(1, cav.getDefenceBonus());
     }
 

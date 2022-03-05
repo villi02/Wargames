@@ -1,5 +1,6 @@
 import Units.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -16,7 +17,7 @@ public class Client {
     public final int VALG5 = 5;
     public final int VALG6 = 6;
 
-    public final int EXIT = 9;
+    public final int EXIT = 7;
 
     public Client(){
     }
@@ -26,6 +27,7 @@ public class Client {
      */
       private Army human;
       private Army orcish;
+      private Battle battle;
 
 
     Scanner scStr = new Scanner(System.in);
@@ -38,7 +40,6 @@ public class Client {
     public static void main(String[] args) throws Exception {
         Client go = new Client();
         go.testData();
-        //Battle battle = new battle(human, orcish);
         while (true)
         {
             go.start();
@@ -50,7 +51,9 @@ public class Client {
      * Creates instances to be used as test data
      */
     public void testData() throws Exception {
+
         // Human Army
+        human = new Army("Human");
 
         IntStream.range(0, 500).forEach(i -> {
             try {
@@ -66,10 +69,7 @@ public class Client {
                 e.printStackTrace();
             }
         });
-        for (int i = 0; i < 100; i++)
-        {
-            human.add(new CavalryUnit("Knight", 100));
-        }
+
         IntStream.range(0, 200).forEach(i -> {
             try {
                 human.add(new RangedUnit("Archer", 100));
@@ -82,6 +82,7 @@ public class Client {
 
 
         // Orcish
+        orcish = new Army("Orcish");
 
          IntStream.range(0,500).forEach(i -> {
              try {
@@ -105,30 +106,72 @@ public class Client {
              } catch (Exception e) {
                  e.printStackTrace();
              }
-             try {
-                 orcish.add(new CommanderUnit("Gul'dan", 180));
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }
+
          });
+
+        try {
+            orcish.add(new CommanderUnit("Gul'dan", 180));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Initialize Battle
+        battle = new Battle(human, orcish);
 
         }
 
-    public void start()
-    {
+    /**
+     * Method to call the functions and for the user to give input
+     */
+    public void start() throws Exception {
         while (true){
             int choice = this.menuChoice();
             switch(choice){
                 case VALG1:
+                    System.out.println("Army sizes:");
+                    System.out.println(String.format("Human size: %d", human.getAllUnits().size()));
+                    System.out.println(String.format("Orcish size: %d", orcish.getAllUnits().size()));
 
                     break;
                 case VALG2:
+                    System.out.println(String.format("The winning army: %s",battle.simulate().getName()));
+
 
                     break;
                 case VALG3:
+                    System.out.println("Name:");
+                    String humanName = scStr.nextLine();
+                    System.out.println("Health:");
+                    int humanHealth = scInt.nextInt();
+                    System.out.println("Attack:");
+                    int humanAttack = scInt.nextInt();
+                    System.out.println("Armor:");
+                    int humanArmor = scInt.nextInt();
+                    try {
+                        human.add(new InfantryUnit(humanName, humanHealth, humanAttack, humanArmor));
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 
                     break;
                 case VALG4:
+                    System.out.println("Name:");
+                    String orcishName = scStr.nextLine();
+                    System.out.println("Health:");
+                    int orcishHealth = scInt.nextInt();
+                    System.out.println("Attack:");
+                    int orcishAttack = scInt.nextInt();
+                    System.out.println("Armor:");
+                    int orcishArmor = scInt.nextInt();
+                    try {
+                        orcish.add(new InfantryUnit(orcishName, orcishHealth, orcishAttack, orcishArmor));
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 
                     break;
                 case VALG5:
@@ -141,30 +184,30 @@ public class Client {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Fant ikke ditt menyvalg, følg instruksjoner som er gitt");
+                    System.out.println("Something went wrong");
                     break;
             }
         }
     }
 
+    /**
+     * A method to get the input of the user, to be used in start()
+     * @return The choice as an int
+     */
     public int menuChoice()
     {
         int choice = 0;
-        System.out.println("Hva vil du gjøre?");
-        System.out.println("1: ");
-        System.out.println("2: ");
-        System.out.println("3: ");
-        System.out.println("4: ");
+        System.out.println("What dou you want to do?");
+        System.out.println("1: Get the size of each army");
+        System.out.println("2: Simulate Battle ");
+        System.out.println("3: Add new Unit to Human");
+        System.out.println("4: Add new Unit to Orcish");
         System.out.println("5: ");
         System.out.println("6: ");
+        System.out.println("7: Quit ");
         choice = scInt.nextInt();
-        if (scInt.hasNextInt())
-        {
-            choice = scInt.nextInt();
-        }
-        else
-        {
-            System.out.println("Du må oppgi en av valgene over");
+        if (choice < 0 || choice > 8) {
+            System.out.println("Must be one of the options stated");
         }
         return choice;
     }

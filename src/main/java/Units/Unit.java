@@ -2,6 +2,9 @@ package Units;
 
 public abstract class Unit {
 
+    /**
+     * Initialize enum
+     */
     enum State{
         FIRST_ATTACK,
         SECOND_ATTACK,
@@ -25,6 +28,10 @@ public abstract class Unit {
         if (health <= 0 || attack <= 0 || armor <=0 ){
             throw new Exception("Must be positive integers");
         }
+        if (!(Character.isDigit(health) || !(Character.isDigit(attack)) || !(Character.isDigit(armor)))){
+            throw new IllegalArgumentException("Must be integers");
+        }
+
         this.name = name;
         this.health = health;
         this.attack = attack;
@@ -84,7 +91,7 @@ public abstract class Unit {
      */
     @Override
     public String toString() {
-        return String.format("Unit- name: {0}, health: {1}, attack: {2}, armor: {3} ", this.name, this.health, this.attack, this.armor);
+        return String.format("Unit- name: %s, health: %d, attack: %d, armor: %d ", this.name, this.health, this.attack, this.armor);
     }
 
     /**
