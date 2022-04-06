@@ -1,8 +1,10 @@
 package Units;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Army {
 
@@ -108,6 +110,37 @@ public class Army {
         return this.units.get(random.nextInt(this.units.size()));
     }
 
+    /**
+     * A method to return all Infantry units in an army
+     * @return The Infantry units in the army as a List<Unit>
+     */
+    public List<Unit> getInfantryUnits() {
+        return this.units.stream().filter(x -> x instanceof InfantryUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * A method to return all Cavalry units in an army
+     * @return The Cavalry units in the army as a List<Unit>
+     */
+    public List<Unit> getCavalryUnits() {
+        return this.units.stream().filter(x -> x instanceof CavalryUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * A method to return all Ranged units in an army
+     * @return The Ranged units in the army as a List<Unit>
+     */
+    public List<Unit> getRangedUnits() {
+        return this.units.stream().filter(x -> x instanceof RangedUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * A method to return all Commander units in an army
+     * @return The Commander units in the army as a List<Unit>
+     */
+    public List<Unit> getCommanderUnits() {
+        return this.units.stream().filter(x -> x instanceof CommanderUnit).collect(Collectors.toList());
+    }
 
     @Override
     public String toString() {
