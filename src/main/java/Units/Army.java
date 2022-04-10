@@ -60,6 +60,14 @@ public class Army {
     }
 
     /**
+     * A method to change name of army
+     * @param name the new name of army
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * A method to add a unit to the Army
      * @param unit the unit to be added to the Army
      */

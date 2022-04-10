@@ -106,4 +106,5 @@ public abstract class Unit {
      */
     abstract public int getDefenceBonus();
 
+
 }

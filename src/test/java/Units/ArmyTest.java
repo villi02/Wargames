@@ -73,6 +73,12 @@ class ArmyTest {
     }
 
     @Test
+    void getInfantryUnits() {
+
+    }
+
+
+    @Test
     void testToString() {
     }
 

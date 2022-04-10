@@ -68,5 +68,10 @@ public class RangedUnit extends Unit{
         return defenceBonus;
 
         }
+
+    @Override
+    public String toString() {
+        return getClass() + "," + getName() + "," + getHealth();
+    }
 }
 
