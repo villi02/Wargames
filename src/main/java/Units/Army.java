@@ -131,7 +131,7 @@ public class Army {
      * @return The Cavalry units in the army as a List<Unit>
      */
     public List<Unit> getCavalryUnits() {
-        return this.units.stream().filter(x -> x instanceof CavalryUnit).collect(Collectors.toList());
+        return this.units.stream().filter(x -> x instanceof CavalryUnit && !(x instanceof CommanderUnit)).collect(Collectors.toList());
     }
 
     /**

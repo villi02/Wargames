@@ -73,10 +73,35 @@ class ArmyTest {
     }
 
     @Test
-    void getInfantryUnits() {
-
+    void getInfantryUnits() throws Exception {
+        elves.add(new InfantryUnit("Test Infantry", 420));
+        elves.add(new InfantryUnit("Test Infantry", 420));
+        assertEquals(true, elves.getInfantryUnits().size() == 6);
     }
 
+    @Test
+    void getCavalryUnits() throws Exception {
+        elves.add(new CavalryUnit("Test Cavalry", 420));
+        elves.add(new CavalryUnit("Test Cavalry", 420));
+        elves.add(new CavalryUnit("Test Cavarly", 420));
+        System.out.println(elves.getCavalryUnits().size());
+        assertEquals(true, elves.getCavalryUnits().size() == 7);
+    }
+
+    @Test
+    void getCommanderUnit() throws Exception {
+        elves.add(new CommanderUnit("Test Commander", 420));
+        elves.add(new CommanderUnit("Test Commander", 420));
+        elves.add(new CommanderUnit("Test Commander", 420));
+        elves.add(new CommanderUnit("Test Commander", 420));
+        assertEquals(true, elves.getCommanderUnits().size() == 8);
+    }
+
+    @Test
+    void getRangedUnits() throws Exception {
+        elves.add(new RangedUnit("Test Ranged", 420));
+        assertEquals(true, elves.getRangedUnits().size() == 5);
+    }
 
     @Test
     void testToString() {
