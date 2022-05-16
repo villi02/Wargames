@@ -5,6 +5,10 @@ package Units;
 public class RangedUnit extends Unit{
 
     private State myState  = State.FIRST_ATTACK;
+    int defenceBonus;
+    int attackBonus = 3; // standard attack bonus
+    final int FOREST_REDUCTION = -1;
+    final int HILL_BONUS = 2;
 
     /**
      * A constructor for the RangedUnit
@@ -31,21 +35,37 @@ public class RangedUnit extends Unit{
      *
      * @return the attack bonus of a unit as an int
      */
-    @Override
-    public int getAttackBonus() {
-       return 3;
+    public int getAttackBonus(Terrain terrain) {
+       switch (terrain){
+           case PlAINS, STANDARD_TERRAIN -> {
+               return (this.defenceBonus);
+           }
+           case FOREST -> {
+               return (this.defenceBonus + FOREST_REDUCTION);
+           }
+           case HILL -> {
+               return (this.defenceBonus + HILL_BONUS);
+           }
+       }
+        return attackBonus;
     }
 
     /**
-     * A method to retrieve the defence bonus of a unit
-     *
-     * @return the defence bonus of a unit as an int
+     * A standard method for getting the attack bonus, for when to terrain is provided
+     * @return the attack bonus as an int
      */
     @Override
-    //Not sure as to where i'll insert the logic to the defence bonus, set the temporary return value to the standard value
-    public int getDefenceBonus() {
+    public int getAttackBonus() {
+        return attackBonus;
+    }
 
-        int defenceBonus = 0;
+    /**
+     * A method for getting the defence bonus based on terrain
+     * @param terrain the terrain in which the unit is located
+     * @return the defence bonus as an int
+     */
+    public int getDefenceBonus(Terrain terrain) {
+        defenceBonus = 0;
         switch(this.myState){
             case FIRST_ATTACK:
                 defenceBonus = 6;
@@ -68,6 +88,36 @@ public class RangedUnit extends Unit{
         return defenceBonus;
 
         }
+
+    /**
+     * A standard method for getting defence bonus, for when no terrain is provided
+     * @return the defence bonus as an int
+     */
+    @Override
+    public int getDefenceBonus() {
+        defenceBonus = 0;
+        switch(this.myState){
+            case FIRST_ATTACK:
+                defenceBonus = 6;
+                this.myState = State.SECOND_ATTACK;
+                break;
+
+            case SECOND_ATTACK:
+                defenceBonus = 4;
+                this.myState = State.THIRD_ATTACK;
+                break;
+
+            case THIRD_ATTACK:
+                defenceBonus = 2;
+                break;
+
+            default:
+                System.out.println("something went wrong");
+                break;
+        }
+        return defenceBonus;
+
+    }
 
     @Override
     public String toString() {

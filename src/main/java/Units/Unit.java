@@ -95,16 +95,29 @@ public abstract class Unit {
     }
 
     /**
-     * A method to retrieve the attack bonus of a unit
+     * A standard method to retrieve the attack bonus of a unit
      * @return the attack bonus of a unit as an int
      */
     abstract public int getAttackBonus();
 
     /**
-     * A method to retrieve the defence bonus of a unit
+     * A standard method to retrieve the defence bonus of a unit
      * @return the defence bonus of a unit as an int
      */
     abstract public int getDefenceBonus();
 
+    /**
+     * A method to retrieve the defence bonus of a unit, when terrain is implemented
+     * @param terrain the terrain
+     * @return the defence bonus
+     */
+    abstract public int getDefenceBonus(Terrain terrain);
+
+    /**
+     * A method to retrieve the attack bonus of a unit, when terrain is implemented
+     * @param terrain the terrain as a Terrain
+     * @return the attack bonus as an int
+     */
+    abstract public int getAttackBonus(Terrain terrain);
 
 }

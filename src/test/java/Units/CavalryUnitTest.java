@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CavalryUnitTest {
     CavalryUnit cav;
+    Terrain terrain = Terrain.STANDARD_TERRAIN;
 
     @BeforeEach
     void testData() throws Exception{
@@ -20,9 +21,9 @@ class CavalryUnitTest {
         assertEquals(69, zeus.getHealth());
         assertEquals(3, zeus.getAttack());
         assertEquals(6, zeus.getArmor());
-        assertEquals(6, zeus.getAttackBonus(), "First Attack bonus");
-        assertEquals(2, zeus.getAttackBonus(), "Second Attack bonus");
-        assertEquals(2, zeus.getAttackBonus(), "Third Attack bonus");
+        assertEquals(6, zeus.getAttackBonus(terrain), "First Attack bonus");
+        assertEquals(2, zeus.getAttackBonus(terrain), "Second Attack bonus");
+        assertEquals(2, zeus.getAttackBonus(terrain), "Third Attack bonus");
     }
 
     @Test
@@ -36,13 +37,14 @@ class CavalryUnitTest {
 
     @Test
     void getAttackBonusTest() {
-        assertEquals(6, cav.getAttackBonus());
-        assertEquals(2, cav.getAttackBonus());
+        terrain = Terrain.STANDARD_TERRAIN;
+        assertEquals(6, cav.getAttackBonus(terrain));
+        assertEquals(2, cav.getAttackBonus(terrain));
     }
 
     @Test
     void getDefenceBonusTest() {
-        assertEquals(1, cav.getDefenceBonus());
+        assertEquals(1, cav.getDefenceBonus(terrain));
     }
 
 }

@@ -1,6 +1,7 @@
+package App;
+
 import Units.*;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -115,7 +116,7 @@ public class Client {
             e.printStackTrace();
         }
 
-        // Initialize Battle
+        // Initialize Units.Battle
         battle = new Battle(human, orcish);
 
         }
@@ -199,7 +200,7 @@ public class Client {
         int choice = 0;
         System.out.println("What dou you want to do?");
         System.out.println("1: Get the size of each army");
-        System.out.println("2: Simulate Battle ");
+        System.out.println("2: Simulate Units.Battle ");
         System.out.println("3: Add new Unit to Human");
         System.out.println("4: Add new Unit to Orcish");
         System.out.println("5: ");

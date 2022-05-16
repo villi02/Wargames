@@ -1,2 +1,8 @@
-package Factory;public class UnitType {
+package Factory;
+
+public enum UnitType {
+    CAVALRY,
+    COMMANDER,
+    INFANTRY,
+    RANGED
 }

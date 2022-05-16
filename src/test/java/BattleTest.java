@@ -1,6 +1,6 @@
 import Units.Army;
+import Units.Battle;
 import Units.InfantryUnit;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

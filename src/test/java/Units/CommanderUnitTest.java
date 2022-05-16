@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommanderUnitTest {
 
     CommanderUnit cody;
+    Terrain terrain = Terrain.STANDARD_TERRAIN;
 
     @BeforeEach
      void testData()
@@ -26,9 +27,9 @@ class CommanderUnitTest {
         assertEquals(69, commando.getHealth());
         assertEquals(420, commando.getAttack());
         assertEquals(600, commando.getArmor());
-        assertEquals(6, commando.getAttackBonus());
-        assertEquals(2, commando.getAttackBonus());
-        assertEquals(1, commando.getDefenceBonus());
+        assertEquals(6, commando.getAttackBonus(terrain));
+        assertEquals(2, commando.getAttackBonus(terrain));
+        assertEquals(1, commando.getDefenceBonus(terrain));
     }
 
     @Test
@@ -42,13 +43,13 @@ class CommanderUnitTest {
 
     @Test
     void getAttackBonus(){
-        assertEquals(6, cody.getAttackBonus());
-        assertEquals(2, cody.getAttackBonus());
+        assertEquals(6, cody.getAttackBonus(terrain));
+        assertEquals(2, cody.getAttackBonus(terrain));
     }
 
     @Test
     void getDefenceBonus() {
-        assertEquals(1, cody.getDefenceBonus());
+        assertEquals(1, cody.getDefenceBonus(terrain));
     }
 
     @Test

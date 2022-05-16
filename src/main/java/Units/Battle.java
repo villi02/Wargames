@@ -1,4 +1,4 @@
-import Units.*;
+package Units;
 
 import java.util.Random;
 
@@ -8,6 +8,7 @@ public class Battle {
      * Initialize variables
      */
     private Army armyOne, armyTwo;
+    private Terrain terrain;
     enum State{
         ARMY1_ATTACK,
         ARMY2_ATTACK
@@ -17,9 +18,22 @@ public class Battle {
     private Battle.State myState;
 
     /**
-     * A constructor for the Battle class
-     * @param armyOne An army to be featured in the Battle
-     * @param armyTwo An army to be featured in the Battle (can be the same as the first Army)
+     * A constructor for the Units.Battle class, when terrain is implemented
+     * @param armyOne An army to be featured in the Units.Battle
+     * @param armyTwo An army to be featured in the Units.Battle (can be the same as the first Army)
+     * @param terrain The terrain in which the battle will take place, as a Terrain
+     * @throws Exception
+     */
+    public Battle(Army armyOne, Army armyTwo, Terrain terrain) throws Exception {
+        this.armyOne = armyOne;
+        this.armyTwo = armyTwo;
+        this.terrain = terrain;
+    }
+
+    /**
+     * A constructor for the Units.Battle class, when terrain is not implemented
+     * @param armyOne An army to be featured in the Units.Battle
+     * @param armyTwo An army to be featured in the Units.Battle (can be the same as the first Army)
      * @throws Exception
      */
     public Battle(Army armyOne, Army armyTwo) throws Exception {
@@ -77,9 +91,10 @@ public class Battle {
      * @param defender A Unit that's going to be attacked
      * @return A boolean, returns false if the unit dies
      */
+    //Make sure unit cant have more health than before attack
     public boolean attack(Unit attacker, Unit defender)
     {
-        int newHealth = defender.getHealth() - (attacker.getAttack() + attacker.getAttackBonus()) + (defender.getArmor() + defender.getDefenceBonus());
+        int newHealth = defender.getHealth() - (attacker.getAttack() + attacker.getAttackBonus(terrain)) + (defender.getArmor() + defender.getDefenceBonus(terrain));
         if (!(newHealth > 0)){
             defender.setHealth(0);
             return false;
@@ -90,7 +105,7 @@ public class Battle {
 
     @Override
     public String toString() {
-        return "Battle{" +
+        return "Units.Battle{" +
                 "armyOne=" + armyOne +
                 ", armyTwo=" + armyTwo +
                 '}';
