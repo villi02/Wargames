@@ -20,7 +20,7 @@ class RangedUnitTest {
     @Test
     void getAttackBonus() {
         assertEquals(3, archer.getAttackBonus(terrain), "should return 3 every time");
-        assertEquals(3, archer.getAttackBonus(terrain), "should return 3 every time");
+        assertEquals(3, archer.getAttackBonus(), "should return 3 every time");
     }
 
     @Test
@@ -31,6 +31,25 @@ class RangedUnitTest {
         assertEquals(2, archer.getDefenceBonus(terrain), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(terrain), "third defence bonus");
         assertEquals(2, archer.getDefenceBonus(terrain), "third defence bonus");
+    }
+
+    @Test
+    void getAttackBonusForest() {
+        assertEquals(2, archer.getAttackBonus(Terrain.FOREST), "Should be 2 every time");
+        assertEquals(3, archer.getAttackBonus(Terrain.PlAINS), "Should be 3 every time");
+    }
+
+    @Test
+    void getAttackBonusHill() {
+        assertEquals(5, archer.getAttackBonus(Terrain.HILL), "Should be 5 every time");
+        assertEquals(3, archer.getAttackBonus());
+        assertEquals(3, archer.getAttackBonus(terrain));
+    }
+
+    @Test
+    void getAttackBonusNoTerrainBonus() {
+        assertEquals(true, archer.getAttackBonus() == archer.getAttackBonus(Terrain.STANDARD_TERRAIN));
+        assertEquals(true, archer.getAttackBonus() == archer.getAttackBonus(Terrain.PlAINS));
     }
 
 

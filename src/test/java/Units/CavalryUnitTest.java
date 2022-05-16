@@ -36,15 +36,51 @@ class CavalryUnitTest {
 
 
     @Test
-    void getAttackBonusTest() {
+    void getAttackBonusStandardTerrain() {
         terrain = Terrain.STANDARD_TERRAIN;
         assertEquals(6, cav.getAttackBonus(terrain));
         assertEquals(2, cav.getAttackBonus(terrain));
     }
 
+
     @Test
-    void getDefenceBonusTest() {
-        assertEquals(1, cav.getDefenceBonus(terrain));
+    void getDefenceBonusForest() { assertEquals(0, cav.getDefenceBonus(Terrain.FOREST), "Should be zero every time");}
+
+    @Test
+    void getDefencebonusNotForest() {
+        assertEquals(1, cav.getDefenceBonus(Terrain.PlAINS), "Should be 1 every time");
+        assertEquals(1, cav.getDefenceBonus(Terrain.HILL), "Should be 1 every time");
+        assertEquals(1, cav.getDefenceBonus(), "Should be 1 every time");
+        assertEquals(1, cav.getDefenceBonus(Terrain.STANDARD_TERRAIN), "Should be 1 every time");
+    }
+    @Test
+    void getAttackBonusPlains() throws Exception {
+        CavalryUnit newCav = new CavalryUnit("Kasdis", 69);
+        assertEquals(8, newCav.getAttackBonus(Terrain.PlAINS), "First attack: Should be 8");
+        assertEquals(4, newCav.getAttackBonus(Terrain.PlAINS), "Second attack: Should be 4");
+        assertEquals(4, newCav.getAttackBonus(Terrain.PlAINS), "Third attack: Should be 4");
+        assertEquals(4, newCav.getAttackBonus(Terrain.PlAINS), "Fourth attack: Should be 4");
+    }
+
+    @Test
+    void getAttackBonusNotPlains() throws Exception {
+        CavalryUnit cavStandard = new CavalryUnit("Standard Terrain", 420);
+        assertEquals(6, cavStandard.getAttackBonus(Terrain.STANDARD_TERRAIN), "First attack: Should be 6");
+        assertEquals(2, cavStandard.getAttackBonus(Terrain.STANDARD_TERRAIN), "Second attack: Should be 2");
+        assertEquals(2, cavStandard.getAttackBonus(Terrain.STANDARD_TERRAIN), "Third attack: Should be 2");
+        assertEquals(2, cavStandard.getAttackBonus(Terrain.STANDARD_TERRAIN), "Fourth attack: Should be 2");
+
+        CavalryUnit cavNormal = new CavalryUnit("No Terrain", 420);
+        assertEquals(6, cavNormal.getAttackBonus(), "First attack: Should be 6");
+        assertEquals(2, cavNormal.getAttackBonus(), "Second attack: Should be 2");
+        assertEquals(2, cavNormal.getAttackBonus(), "Third attack: Should be 2");
+        assertEquals(2, cavNormal.getAttackBonus(), "Fourth attack: Should be 2");
+
+        CavalryUnit cavForest = new CavalryUnit("Forest Terrain", 420);
+        assertEquals(6, cavForest.getAttackBonus(Terrain.FOREST), "First attack: Should be 6");
+        assertEquals(2, cavForest.getAttackBonus(Terrain.FOREST), "Second attack: Should be 2");
+        assertEquals(2, cavForest.getAttackBonus(Terrain.FOREST), "Third attack: Should be 2");
+        assertEquals(2, cavForest.getAttackBonus(Terrain.FOREST), "Fourth attack: Should be 2");
     }
 
 }

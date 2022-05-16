@@ -5,10 +5,12 @@ package Units;
 public class RangedUnit extends Unit{
 
     private State myState  = State.FIRST_ATTACK;
-    int defenceBonus;
+    int defenceBonus = 2; // standard defence bonus
     int attackBonus = 3; // standard attack bonus
     final int FOREST_REDUCTION = -1;
     final int HILL_BONUS = 2;
+    final int FIRST_DEFENCE_BONUS = 4;
+    final int SECOND_DEFENCE_BONUS = 2;
 
     /**
      * A constructor for the RangedUnit
@@ -31,32 +33,36 @@ public class RangedUnit extends Unit{
     }
 
     /**
-     * A method to retrieve the attack bonus of a unit
-     *
-     * @return the attack bonus of a unit as an int
+     * A method for getting the attack bonus of a ranged unit, when terrain is implemented
+     * @param terrain the terrain as a Terrain
+     * @return the attack bonus as an int
      */
     public int getAttackBonus(Terrain terrain) {
        switch (terrain){
            case PlAINS, STANDARD_TERRAIN -> {
-               return (this.defenceBonus);
+               return (this.attackBonus);
            }
            case FOREST -> {
-               return (this.defenceBonus + FOREST_REDUCTION);
+               return (this.attackBonus + FOREST_REDUCTION);
            }
            case HILL -> {
-               return (this.defenceBonus + HILL_BONUS);
+               return (this.attackBonus + HILL_BONUS);
+           }
+           default -> {
+               System.out.println("Something went wrong");
+               break;
            }
        }
         return attackBonus;
     }
 
     /**
-     * A standard method for getting the attack bonus, for when to terrain is provided
+     * A method for getting the attack bonus of a ranged unit
      * @return the attack bonus as an int
      */
     @Override
     public int getAttackBonus() {
-        return attackBonus;
+        return this.attackBonus;
     }
 
     /**
@@ -65,25 +71,25 @@ public class RangedUnit extends Unit{
      * @return the defence bonus as an int
      */
     public int getDefenceBonus(Terrain terrain) {
-        defenceBonus = 0;
         switch(this.myState){
-            case FIRST_ATTACK:
-                defenceBonus = 6;
+            case FIRST_ATTACK -> {
                 this.myState = State.SECOND_ATTACK;
-                break;
+                return this.defenceBonus + 4;
+            }
 
-            case SECOND_ATTACK:
-                defenceBonus = 4;
+            case SECOND_ATTACK -> {
                 this.myState = State.THIRD_ATTACK;
-                break;
+                return this.defenceBonus + 2;
+            }
 
-            case THIRD_ATTACK:
-                defenceBonus = 2;
-                break;
+            case THIRD_ATTACK -> {
+                return this.defenceBonus;
+            }
 
-            default:
+            default -> {
                 System.out.println("something went wrong");
                 break;
+            }
         }
         return defenceBonus;
 
@@ -95,25 +101,25 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getDefenceBonus() {
-        defenceBonus = 0;
         switch(this.myState){
-            case FIRST_ATTACK:
-                defenceBonus = 6;
+            case FIRST_ATTACK -> {
                 this.myState = State.SECOND_ATTACK;
-                break;
+                return this.defenceBonus + FIRST_DEFENCE_BONUS;
+            }
 
-            case SECOND_ATTACK:
-                defenceBonus = 4;
+            case SECOND_ATTACK -> {
                 this.myState = State.THIRD_ATTACK;
-                break;
+                return this.defenceBonus + SECOND_DEFENCE_BONUS;
+            }
 
-            case THIRD_ATTACK:
-                defenceBonus = 2;
-                break;
+            case THIRD_ATTACK -> {
+                return this.defenceBonus;
+            }
 
-            default:
+            default -> {
                 System.out.println("something went wrong");
                 break;
+            }
         }
         return defenceBonus;
 
