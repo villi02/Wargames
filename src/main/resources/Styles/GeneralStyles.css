@@ -1,0 +1,14 @@
+
+.generalButton {
+    -fx-background-color: #624a2e;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 3px;
+}
+
+.generalButton:hover {
+    -fx-background-color: #0A0A23;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 1px;
+}
