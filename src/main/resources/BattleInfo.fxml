@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="LoadBattle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.LoadBattleController">
+   <children>
+      <Label layoutX="439.0" layoutY="28.0" text="Battle info">
+         <font>
+            <Font name="Apple Chancery" size="44.0" />
+         </font>
+      </Label>
+      <Button fx:id="Army1Btn" layoutX="311.0" layoutY="119.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="112.0" text="Army 1" />
+      <Button fx:id="Army2Btn" layoutX="656.0" layoutY="114.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="112.0" text="Army 2" />
+      <AnchorPane layoutX="64.0" layoutY="180.0" prefHeight="507.0" prefWidth="967.0" styleClass="newAnchorBackground">
+         <children>
+            <ListView fx:id="playerList" layoutX="372.0" layoutY="88.0" prefHeight="331.0" prefWidth="204.0" styleClass="typeAreas" stylesheets="@../../../../../Sysdev/technico/idatt1002-project-k2-06/src/main/resources/Styles/darkmodeSheet.css" />
+            <ListView fx:id="teamList" layoutX="39.0" layoutY="88.0" prefHeight="87.0" prefWidth="204.0" styleClass="typeAreas" stylesheets="@../../../../../Sysdev/technico/idatt1002-project-k2-06/src/main/resources/Styles/darkmodeSheet.css" />
+            <ListView fx:id="playerInfoList" layoutX="716.0" layoutY="88.0" mouseTransparent="true" prefHeight="331.0" prefWidth="204.0" styleClass="typeAreas" stylesheets="@../../../../../Sysdev/technico/idatt1002-project-k2-06/src/main/resources/Styles/darkmodeSheet.css" />
+            <Label alignment="CENTER" layoutX="83.0" layoutY="27.0" prefHeight="27.0" prefWidth="113.0" text="Unit Type" textAlignment="CENTER" textFill="#615c5c">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="teamNameLabel" alignment="CENTER" layoutX="372.0" layoutY="29.0" prefHeight="30.0" prefWidth="204.0" text="Unit">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="750.0" layoutY="20.0" prefHeight="48.0" prefWidth="137.0" text="Unit info" textFill="#323232">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
