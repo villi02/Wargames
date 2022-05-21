@@ -2,10 +2,14 @@ package App;
 
 import Units.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class FileManagement {
 
@@ -79,5 +83,25 @@ public class FileManagement {
             e.printStackTrace();
         }
         return army;
+    }
+
+    public ArrayList<String> getArmyNames() {
+        ArrayList<String> armyNames = new ArrayList<>();
+        Path path = Paths.get("src/main/resources/Armies");
+        try (Stream<Path> subPaths = Files.walk(path, 1)) {
+            subPaths.filter(Files::isRegularFile).forEach(a -> {
+                try {
+                    BufferedReader brReader = new BufferedReader(new FileReader(String.valueOf(a)));
+                    armyNames.add(brReader.readLine());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return armyNames;
     }
 }

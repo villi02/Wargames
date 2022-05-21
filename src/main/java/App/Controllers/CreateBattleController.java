@@ -1,6 +1,7 @@
 package App.Controllers;
 
 import App.Alertbox;
+import App.FileManagement;
 import App.Temp;
 import Factory.UnitFactory;
 import Factory.UnitType;
@@ -16,9 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,13 +36,16 @@ public class CreateBattleController implements Initializable {
     private Scene scene;
     private Stage stage;
 
-    private String selectedUnit = "";
-
-    @FXML
-    private TableView UnitInoTbl;
+    private ArrayList<Unit> displayedUnits = new ArrayList<>();
 
     @FXML
     private ImageView imgViewUnitsPic;
+
+    @FXML
+    private ComboBox BtnPreMdArmies;
+
+    @FXML
+    private TableView UnitInoTbl;
 
     @FXML
     private Button BtnAddUnits;
@@ -68,6 +74,9 @@ public class CreateBattleController implements Initializable {
     @FXML
     private TextField txtInpNameUnits;
 
+    @FXML
+    private TextField txtInpArmynm;
+
     private List<Character> wrongInput = List.of('æ','ø','å',',','.','!','-','_','+','?');
 
     private boolean validateInput(String input){
@@ -77,7 +86,8 @@ public class CreateBattleController implements Initializable {
         return true;
     }
 
-    public void DisplayUnitTable(List<Unit> unitArray) {
+    public void DisplayUnitTable(ArrayList<Unit> unitArray) {
+        displayedUnits = unitArray;
         ObservableList<Unit> units = FXCollections.observableArrayList(unitArray);
         UnitInoTbl.getItems().clear();
         UnitInoTbl.setItems(units);
@@ -117,7 +127,18 @@ public class CreateBattleController implements Initializable {
             DisplayUnitTable(Temp.newUnits);
         }
 
+    }
 
+    /**
+     * A method to display image of units
+     */
+    public void displayImage(){
+        switch (BtnUnitType.getValue().toString()){
+            case "Cavalry" -> imgViewUnitsPic.setImage(new Image(new File("src/main/resources/Images/Cavalry.JPG").toURI().toString()));
+            case "Commander" -> imgViewUnitsPic.setImage(new Image(new File("src/main/resources/Images/Commander.JPG").toURI().toString()));
+            case "Infantry" -> imgViewUnitsPic.setImage(new Image(new File("src/main/resources/Images/Infantry.jpeg").toURI().toString()));
+            case "Ranged" -> imgViewUnitsPic.setImage(new Image(new File("src/main/resources/Images/Archer.JPG").toURI().toString()));
+        }
     }
 
     /**
@@ -125,19 +146,25 @@ public class CreateBattleController implements Initializable {
      */
     public void removeUnit() {
         ObservableList unitsToBeRemoved = UnitInoTbl.getSelectionModel().getSelectedItems();
-        unitsToBeRemoved.stream().forEach(unit -> Temp.newUnits.remove(unit));
-        DisplayUnitTable(Temp.newUnits);
+        unitsToBeRemoved.stream().forEach(unit -> displayedUnits.remove(unit));
+        DisplayUnitTable(displayedUnits);
     }
 
     public void saveToArmy1() {
         ObservableList unitsToBeAdded = UnitInoTbl.getItems();
         ArrayList<Unit> unitsToBeAddedArrayList = new ArrayList<>();
         try{
-            unitsToBeAddedArrayList = (ArrayList<Unit>) unitsToBeAdded;
+            unitsToBeAdded.stream().forEach(unit -> unitsToBeAddedArrayList.add((Unit) unit));
         }catch (Exception e){
             Alertbox.display("Error", "Something went wrong when saving to Army 1");
         }
+
+        if (txtInpArmynm.getText().equals("") && Temp.Army1.getName().equals("")){
+            Alertbox.display("Error", "Your army does not have a name, and you didn't insert an army name \n NB: Your army name will be set to 'Army1' if you do nothing");
+        }
+
         Temp.Army1.addAll(unitsToBeAddedArrayList);
+        Temp.newUnits.clear();
         DisplayUnitTable(Temp.Army1.getAllUnits());
     }
 
@@ -149,11 +176,17 @@ public class CreateBattleController implements Initializable {
         ObservableList unitsToBeAdded = UnitInoTbl.getItems();
         ArrayList<Unit> unitsToBeAddedArrayList = new ArrayList<>();
         try{
-            unitsToBeAddedArrayList = (ArrayList<Unit>) unitsToBeAdded;
+            unitsToBeAdded.stream().forEach(unit -> unitsToBeAddedArrayList.add((Unit) unit));
         }catch (Exception e){
-            Alertbox.display("Error", "Something went wrong when saving to Army 1");
+            Alertbox.display("Error", "Something went wrong when saving to Army 2");
         }
+
+        if (txtInpArmynm.getText().equals("") && Temp.Army1.getName().equals("")){
+            Alertbox.display("Error", "Your army does not have a name, and you didn't insert an army name \n NB: Your army name will be set to 'Army2' if you do nothing");
+        }
+
         Temp.Army2.addAll(unitsToBeAddedArrayList);
+        Temp.newUnits.clear();
         DisplayUnitTable(Temp.Army2.getAllUnits());
     }
 
@@ -161,14 +194,18 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(Temp.Army2.getAllUnits());
     }
 
-    /* public void switchCreate(ActionEvent event) throws IOException {
+     public void switchToLoad(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/loadBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-*/
+
+    public void insertArmyFromFile() {
+
+    }
+
 
     /* public void switchToLoad(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
@@ -189,15 +226,11 @@ public class CreateBattleController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        BtnUnitType.valueProperty().addListener(((observableValue, o, t1) -> {
-            selectedUnit = BtnUnitType.getValue().toString();
-        }));
 
+        InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn);
 
-        NameClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Name"));
-        HealthClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Health"));
-        AttackClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("attack"));
-        ArmorClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("armor"));
+        FileManagement fm = new FileManagement();
+        BtnPreMdArmies.getItems().addAll(fm.getArmyNames());
 
         BtnUnitType.getItems().addAll(
                 "Cavalry",
@@ -205,5 +238,12 @@ public class CreateBattleController implements Initializable {
                 "Infantry",
                 "Ranged"
         );
+    }
+
+    static void InitializeTableColumn(TableColumn<Unit, String> nameClmn, TableColumn<Unit, String> healthClmn, TableColumn<Unit, Integer> attackClmn, TableColumn<Unit, Integer> armorClmn) {
+        nameClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Name"));
+        healthClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Health"));
+        attackClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("attack"));
+        armorClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("armor"));
     }
 }

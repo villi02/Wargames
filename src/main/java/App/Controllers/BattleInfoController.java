@@ -94,10 +94,7 @@ public class BattleInfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        NameClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Name"));
-        HealthClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Health"));
-        AttackClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("attack"));
-        ArmorClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("armor"));
+        CreateBattleController.InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn);
 
         DisplayUnits();
 

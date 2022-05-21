@@ -2,8 +2,13 @@ package App;
 
 import Units.*;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Client {
 
@@ -176,6 +181,19 @@ public class Client {
 
                     break;
                 case VALG5:
+                    Path path = Paths.get("src/main/resources/Armies");
+                    try (Stream<Path> subPaths = Files.walk(path, 1)) {
+                        subPaths.filter(Files::isRegularFile).forEach(a -> {
+                            try {
+                                BufferedReader brTest = new BufferedReader(new FileReader(String.valueOf(a)));
+                                System.out.println(brTest.readLine());
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
 
                     break;
                 case VALG6:
@@ -203,7 +221,7 @@ public class Client {
         System.out.println("2: Simulate Units.Battle ");
         System.out.println("3: Add new Unit to Human");
         System.out.println("4: Add new Unit to Orcish");
-        System.out.println("5: ");
+        System.out.println("5: Print all armies in files");
         System.out.println("6: ");
         System.out.println("7: Quit ");
         choice = scInt.nextInt();

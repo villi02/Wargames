@@ -14,7 +14,9 @@ public class Army {
     /**
      * An empty constructor, for initialization
      */
-    public Army(){}
+    public Army(){
+        this.name = "";
+    }
 
     /**
      * Constructor for Amry class
