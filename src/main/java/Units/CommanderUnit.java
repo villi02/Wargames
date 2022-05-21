@@ -21,4 +21,12 @@ public class CommanderUnit extends CavalryUnit{
         super(name, health, 25, 15);
     }
 
+    /**
+     * A method to get the type of the Unit
+     * @return the type as a String
+     */
+    @Override
+    public String getType() {
+        return "Commander";
+    }
 }

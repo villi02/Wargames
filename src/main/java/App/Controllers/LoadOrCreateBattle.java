@@ -15,25 +15,38 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class loadOrCreateBattle {
+public class LoadOrCreateBattle {
 
-    /* public void switchCreate(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/loadOrCreateBattle.fxml"));
+    /**
+     * Initialize elements
+     */
+    private Scene scene;
+    private Stage stage;
+
+     public void switchCreateBattle(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-*/
 
-    /* public void switchToLoad(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/loadOrCreateBattle.fxml"));
+    public void switchBattleInfo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/BattleInfo.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-*/
+
+     public void switchToLoadBattle(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/LoadBattle.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     /**
      * A method to handle closing the application

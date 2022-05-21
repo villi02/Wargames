@@ -1,9 +1,6 @@
 package Units;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Army {
@@ -11,8 +8,13 @@ public class Army {
     /**
      * Initialize variables
      */
-    ArrayList<Unit> units;
+    ArrayList<Unit> units = new ArrayList<>();
     String name;
+
+    /**
+     * An empty constructor, for initialization
+     */
+    public Army(){}
 
     /**
      * Constructor for Amry class
@@ -169,5 +171,28 @@ public class Army {
     @Override
     public int hashCode() {
         return Objects.hash(units, name);
+    }
+
+    /**
+     * Method to return a list with all the units of a given type
+     * @param unitType The unit type to find
+     * @return the units as a List<Unit>
+     */
+    public List<Unit> getUnitsWithType(String unitType) {
+        switch (unitType){
+            case "[Commander]" -> {
+                return getCommanderUnits();
+            }
+            case "[Cavalry]" -> {
+                return getCavalryUnits();
+            }
+            case "[Infantry]" -> {
+                return getInfantryUnits();
+            }
+            case "[Ranged]" -> {
+                return getRangedUnits();
+            }
+            default -> throw new NoSuchElementException("Could not find the Unit type" + unitType);
+        }
     }
 }

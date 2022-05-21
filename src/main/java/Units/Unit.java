@@ -120,4 +120,10 @@ public abstract class Unit {
      */
     abstract public int getAttackBonus(Terrain terrain);
 
+    /**
+     * A method to get the type of the Unit
+     * @return the type as a String
+     */
+    abstract public String getType();
+
 }

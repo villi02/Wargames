@@ -129,5 +129,14 @@ public class RangedUnit extends Unit{
     public String toString() {
         return getClass() + "," + getName() + "," + getHealth();
     }
+
+    /**
+     * A method to get the type of the Unit
+     * @return the type as a String
+     */
+    @Override
+    public String getType() {
+        return "Ranged";
+    }
 }
 

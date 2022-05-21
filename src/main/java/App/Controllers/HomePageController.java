@@ -1,8 +1,11 @@
 package App.Controllers;
 
 import App.Alertbox;
-import javafx.beans.value.ObservableValue;
+import App.FileManagement;
+import App.Temp;
+import Units.Army;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,9 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -24,15 +27,18 @@ public class HomePageController {
     private Scene scene;
     private Stage stage;
 
+    @FXML
+    private Button TestBtn;
 
-    /* public void switchToLoadOrCreate(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/loadOrCreateBattle.fxml"));
+
+    public void switchToLoadOrCreate(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/LoadOrCreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-*/
+
 
    /* public void switchToArmyCreator(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ArmyCreator.fxml"));
@@ -68,4 +74,21 @@ public class HomePageController {
             System.exit(0);
         }
     }
+
+    public void ArmyInfo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/BattleInfo.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ChangeTxt(ActionEvent event) throws Exception {
+        FileManagement fm = new FileManagement();
+        Army army2 = fm.readArmyFromFile(new File("NewTestArmy.csv"));
+        Temp.Army2 = army2;
+        TestBtn.setText("Changed!");
+
+    }
+
 }

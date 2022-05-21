@@ -37,15 +37,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="HomePage" maxHeight="-Infinity" stylesheets="@Styles/GeneralStyles.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
+<AnchorPane fx:id="HomePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
    <children>
       <Label layoutX="241.0" layoutY="70.0" text="Rune Escape">
          <font>
             <Font name="Apple Chancery" size="44.0" />
          </font>
       </Label>
-      <Button id="StartGameBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Start Game" />
-      <Button id="HelpBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#helpButton"  prefHeight="60.0" prefWidth="350.0" text="Help" />
-      <Button id="ExitBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="631.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" text="Exit" />
+      <Button fx:id="StartGameBtn" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToLoadOrCreate" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Start Game" textFill="white" />
+      <Button fx:id="HelpBtn" layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#helpButton" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Help" textFill="white" />
+      <Button fx:id="ExitBtn" layoutX="190.0" layoutY="631.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Exit" textFill="white" />
+      <Button fx:id="TestBtn" layoutX="190.0" layoutY="390.0" mnemonicParsing="false" onAction="#ArmyInfo" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="To be changed" textFill="white" />
+      <Button fx:id="ChangeTxtBtn" layoutX="73.0" layoutY="407.0" mnemonicParsing="false" onAction="#ChangeTxt" text="Change text" />
    </children>
 </AnchorPane>

@@ -37,15 +37,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="HomePage" maxHeight="-Infinity" stylesheets="@Styles/GeneralStyles.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
+<AnchorPane fx:id="LoadBattle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.LoadBattleController">
    <children>
       <Label layoutX="241.0" layoutY="70.0" text="Rune Escape">
          <font>
             <Font name="Apple Chancery" size="44.0" />
          </font>
       </Label>
-      <Button id="CreateBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Create new Battle" />
-      <Button id="LoadBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#helpButton"  prefHeight="60.0" prefWidth="350.0" text="Load Battle" />
-      <Button id="ExitBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="631.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" text="Exit" />
+      <Button id="ReturnBtn" layoutX="190.0" layoutY="568.0" mnemonicParsing="false" onAction="#switchCreateOrLoad" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Return to menu" textFill="WHITE" />
+      <Button id="BoBastardsBtn" layoutX="190.0" layoutY="232.0" mnemonicParsing="false" onAction="#battleOfTheBastards" prefHeight="60.0" prefWidth="350.0" styleClass="BoBastardsButton" text="Battle of the Bastards" textFill="white" />
+      <Button id="BoPelannorBtn" layoutX="190.0" layoutY="314.0" mnemonicParsing="false" onAction="#battleOfPelennorFields" prefHeight="60.0" prefWidth="350.0" styleClass="BoPelennorButton" text="Battle of Pelannor Fields" textFill="white" />
+      <Button id="BoThermopylae" layoutX="190.0" layoutY="396.0" mnemonicParsing="false" onAction="#battleOfThermopylae" prefHeight="60.0" prefWidth="350.0" styleClass="BoThermopylaeButton" text="Battle of Thermopylae" textFill="white" />
+      <Button id="ExitBtn" layoutX="190.0" layoutY="483.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Exit" textFill="white" />
    </children>
 </AnchorPane>

@@ -7,4 +7,6 @@ module Wargames {
     exports App.Controllers;
 
     opens App;
+    opens App.Controllers;
+    opens Units;
 }

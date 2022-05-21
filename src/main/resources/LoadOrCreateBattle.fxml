@@ -37,15 +37,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="HomePage" maxHeight="-Infinity" stylesheets="@Styles/GeneralStyles.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
+<AnchorPane fx:id="LoadOrCreateBattle" maxHeight="-Infinity" stylesheets="@Styles/GeneralStyles.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.LoadOrCreateBattle">
    <children>
       <Label layoutX="241.0" layoutY="70.0" text="Rune Escape">
          <font>
             <Font name="Apple Chancery" size="44.0" />
          </font>
       </Label>
-      <Button id="CreateBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="350.0" text="Create new Battle" />
-      <Button id="LoadBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#helpButton"  prefHeight="60.0" prefWidth="350.0" text="Load Battle" />
+      <Button id="CreateBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchCreateBattle" prefHeight="60.0" prefWidth="350.0" text="Create new Battle" />
+      <Button id="LoadBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#switchToLoadBattle"  prefHeight="60.0" prefWidth="350.0" text="Load pre-made Battle" />
       <Button id="ExitBtn" styleClass="generalButton" textFill="white" layoutX="190.0" layoutY="631.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" text="Exit" />
    </children>
 </AnchorPane>

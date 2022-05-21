@@ -12,3 +12,56 @@
     -fx-border-color: white;
     -fx-border-radius: 1px;
 }
+
+.BoBastardsButton {
+    -fx-background-color: #624a2e;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 3px;
+}
+
+.BoBastardsButton:hover {
+    -fx-background-image: url("../Images/BoBastards.JPG");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-color: #0A0A23;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 1px;
+    -fx-text-fill: #ffffff00;
+}
+
+.BoPelennorButton {
+    -fx-background-color: #624a2e;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 3px;
+}
+
+.BoPelennorButton:hover {
+    -fx-background-image: url("../Images/BoPelennor.JPG");
+    -rtfx-background-color: #624a2e;
+    -fx-background-size: cover;
+    -fx-background-color: #0A0A23;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 1px;
+    -fx-text-fill: #ffffff00;
+}
+
+.BoThermopylaeButton {
+    -fx-background-color: #624a2e;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 3px;
+}
+
+.BoThermopylaeButton:hover {
+    -fx-background-image: url("../Images/BoThermopylae.JPG");
+    -fx-background-size: cover;
+    -fx-background-color: #0A0A23;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 1px;
+    -fx-text-fill: #ffffff00;
+}

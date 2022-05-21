@@ -113,4 +113,12 @@ public class CavalryUnit extends Unit{
         return this.defenceBonus;
     }
 
+    /**
+     * A method to get the type of the Unit
+     * @return the type as a String
+     */
+    @Override
+    public String getType() {
+        return "Cavalry";
+    }
 }
