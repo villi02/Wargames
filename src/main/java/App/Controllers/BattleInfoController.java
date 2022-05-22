@@ -47,6 +47,9 @@ public class BattleInfoController implements Initializable {
     private TableColumn<Unit, Integer> ArmorClmn;
 
     @FXML
+    private TableColumn<Unit, String> TypeClmn;
+
+    @FXML
     private ListView<String> UnitType;
 
     @FXML
@@ -94,7 +97,7 @@ public class BattleInfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        CreateBattleController.InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn);
+        CreateBattleController.InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn, TypeClmn);
 
         DisplayUnits();
 

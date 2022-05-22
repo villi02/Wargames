@@ -12,6 +12,7 @@ public class CavalryUnit extends Unit{
     int TERRAIN_BONUS = 0; // is set to zero as standard value
     final int FIRST_ATTACK_BONUS = 4;
     final int FOREST_DEFENCE_BONUS = 0;
+    private String type;
 
     /**
      * A constructor for a CavalryUnit
@@ -22,6 +23,7 @@ public class CavalryUnit extends Unit{
      */
     public CavalryUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
+        this.type = "Cavalry";
     }
 
     /**
@@ -31,6 +33,7 @@ public class CavalryUnit extends Unit{
      */
     public CavalryUnit(String name, int health) throws Exception {
         super(name, health, 20, 12);
+        this.type = "Cavalry";
     }
 
     /**
@@ -100,7 +103,6 @@ public class CavalryUnit extends Unit{
             }
         }
         return this.attackBonus;
-
     }
 
     /**
@@ -119,6 +121,6 @@ public class CavalryUnit extends Unit{
      */
     @Override
     public String getType() {
-        return "Cavalry";
+        return this.type;
     }
 }

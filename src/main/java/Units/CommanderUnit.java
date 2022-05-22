@@ -1,6 +1,9 @@
 package Units;
 
 public class CommanderUnit extends CavalryUnit{
+
+    private String type;
+
     /**
      * A constructor for a CommanderUnit
      * @param name the name of the Unit as a string
@@ -10,6 +13,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
+        this.type = "Commander";
     }
 
     /**
@@ -19,6 +23,7 @@ public class CommanderUnit extends CavalryUnit{
      */
     public CommanderUnit(String name, int health) throws Exception {
         super(name, health, 25, 15);
+        this.type = "Commander";
     }
 
     /**
@@ -27,6 +32,6 @@ public class CommanderUnit extends CavalryUnit{
      */
     @Override
     public String getType() {
-        return "Commander";
+        return this.type;
     }
 }

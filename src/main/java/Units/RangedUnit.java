@@ -11,6 +11,7 @@ public class RangedUnit extends Unit{
     final int HILL_BONUS = 2;
     final int FIRST_DEFENCE_BONUS = 4;
     final int SECOND_DEFENCE_BONUS = 2;
+    private String type;
 
     /**
      * A constructor for the RangedUnit
@@ -21,6 +22,7 @@ public class RangedUnit extends Unit{
      */
     public RangedUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
+        this.type = "Ranged";
     }
 
     /**
@@ -30,6 +32,7 @@ public class RangedUnit extends Unit{
      */
     public RangedUnit(String name, int health) throws Exception {
         super(name, health, 15, 8);
+        this.type = "Ranged";
     }
 
     /**
@@ -136,7 +139,7 @@ public class RangedUnit extends Unit{
      */
     @Override
     public String getType() {
-        return "Ranged";
+        return this.type;
     }
 }
 

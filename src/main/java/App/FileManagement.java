@@ -85,6 +85,32 @@ public class FileManagement {
         return army;
     }
 
+    public Army readArmyFromFile(String armyName) throws IOException {
+        Path path = Paths.get("src/main/resources/Armies");
+        ArrayList<String> foundArmyPath = new ArrayList<>();
+        try (Stream<Path> subPaths = Files.walk(path, 1)) {
+            subPaths.filter(Files::isRegularFile).forEach(a -> {
+                try {
+                    BufferedReader brReader = new BufferedReader(new FileReader(String.valueOf(a)));
+                    if (brReader.readLine().equals(armyName)){
+                        foundArmyPath.add(a.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (!foundArmyPath.isEmpty()){
+            return readArmyFromFile(new File(foundArmyPath.get(0)));
+        }
+        else{
+            return null;
+        }
+    }
+
     public ArrayList<String> getArmyNames() {
         ArrayList<String> armyNames = new ArrayList<>();
         Path path = Paths.get("src/main/resources/Armies");

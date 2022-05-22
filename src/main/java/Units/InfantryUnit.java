@@ -8,6 +8,7 @@ public class InfantryUnit extends Unit {
     int attackBonus = 2; // 2 is Standard attack bonus for this class
     int defenceBonus = 1; // 1 is Standard defence bonus for this class
     int FOREST_BONUS = 2; // The forest bonus
+    private String type;
 
     /**
      * A constructor for an InfantryUnit
@@ -18,6 +19,7 @@ public class InfantryUnit extends Unit {
      */
     public InfantryUnit(String name, int health, int attack, int armor) throws Exception {
         super(name, health, attack, armor);
+        this.type = "Infantry";
     }
 
     /**
@@ -27,6 +29,7 @@ public class InfantryUnit extends Unit {
      */
     public InfantryUnit(String name, int health) throws Exception {
         super(name, health, 15, 10);
+        this.type = "Infantry";
     }
 
     /**
@@ -80,7 +83,7 @@ public class InfantryUnit extends Unit {
      */
     @Override
     public String getType() {
-        return "Infantry";
+        return this.type;
     }
 
 }

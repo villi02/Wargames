@@ -32,10 +32,12 @@
             </Label>
             <TableView fx:id="UnitInoTbl" layoutX="337.0" layoutY="82.0" prefHeight="341.0" prefWidth="323.0">
               <columns>
+
                 <TableColumn fx:id="NameClmn" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="HealthClmn" prefWidth="75.0" text="Health" />
-                  <TableColumn fx:id="AttackClmn" prefWidth="75.0" text="Attack" />
-                  <TableColumn fx:id="ArmorClmn" prefWidth="75.0" text="Armor" />
+                 <TableColumn fx:id="AttackClmn" prefWidth="75.0" text="Attack" />
+                 <TableColumn fx:id="ArmorClmn" prefWidth="75.0" text="Armor" />
+                 <TableColumn fx:id="TypeClmn" prefWidth="75.0" text="Type" />
               </columns>
             </TableView>
             <Label fx:id="teamNameLabel1" alignment="CENTER" layoutX="755.0" layoutY="25.0" prefHeight="30.0" prefWidth="204.0" text="Army stats">

@@ -5,6 +5,7 @@ import App.FileManagement;
 import App.Temp;
 import Factory.UnitFactory;
 import Factory.UnitType;
+import Units.Army;
 import Units.Unit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,23 @@ public class CreateBattleController implements Initializable {
 
     private ArrayList<Unit> displayedUnits = new ArrayList<>();
 
+    private FileManagement fm = new FileManagement();
+
+    @FXML
+    private TextField txtInpTotlUnts;
+
+    @FXML
+    private TextField txtInpTotCvlry;
+
+    @FXML
+    private TextField txtInpTotCmndr;
+
+    @FXML
+    private TextField txtInpTotInftry;
+
+    @FXML
+    private TextField txtInpTotRngd;
+
     @FXML
     private ImageView imgViewUnitsPic;
 
@@ -61,6 +79,9 @@ public class CreateBattleController implements Initializable {
 
     @FXML
     private TableColumn<Unit, Integer> ArmorClmn;
+
+    @FXML
+    private TableColumn<Unit, String> TypeClmn;
 
     @FXML
     private ComboBox BtnUnitType;
@@ -91,6 +112,19 @@ public class CreateBattleController implements Initializable {
         ObservableList<Unit> units = FXCollections.observableArrayList(unitArray);
         UnitInoTbl.getItems().clear();
         UnitInoTbl.setItems(units);
+
+        txtInpTotlUnts.setText(String.valueOf(unitArray.size()));
+        int totalCavalry = (int) unitArray.stream().filter(unit -> "Cavalry".equals(unit.getType())).count();
+        txtInpTotCvlry.setText(String.valueOf(totalCavalry));
+
+        int totalCommander = (int) unitArray.stream().filter(unit -> "Commander".equals(unit.getType())).count();
+        txtInpTotCmndr.setText(String.valueOf(totalCommander));
+
+        int totalInfantry = (int) unitArray.stream().filter(unit -> "Infantry".equals(unit.getType())).count();
+        txtInpTotInftry.setText(String.valueOf(totalInfantry));
+
+        int totalRanged = (int) unitArray.stream().filter(unit -> "Ranged".equals(unit.getType())).count();
+        txtInpTotRngd.setText(String.valueOf(totalRanged));
 
     }
 
@@ -194,18 +228,66 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(Temp.Army2.getAllUnits());
     }
 
+    public void removeAll(){
+        displayedUnits.clear();
+        DisplayUnitTable(displayedUnits);
+    }
+
      public void switchToLoad(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/loadBattle.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (Temp.Army1.getName().equals("")){
+            Temp.Army1.setName("Army1");
+        }
+
+         if (Temp.Army2.getName().equals("")){
+             Temp.Army2.setName("Army2");
+         }
+
+         if (Temp.Army1.getAllUnits().isEmpty() || Temp.Army2.getAllUnits().isEmpty()){
+             Alertbox.display("Error", "Both armies need to have units to continue to simulation");
+         } else {
+
+             Parent root = FXMLLoader.load(getClass().getResource("/BattleInfoNew.fxml"));
+             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             scene = new Scene(root);
+             stage.setScene(scene);
+             stage.show();
+         }
     }
 
-    public void insertArmyFromFile() {
+    public void insertArmyFromFile() throws IOException {
+        FileManagement fm = new FileManagement();
+        Army armyFromFile = new Army(fm.readArmyFromFile(BtnPreMdArmies.getValue().toString()));
+        DisplayUnitTable(armyFromFile.getAllUnits());
+        txtInpArmynm.setText(armyFromFile.getName());
 
     }
 
+    public void saveToFiles() {
+        if (txtInpArmynm.getText().equals("")) {
+            Alertbox.display("Error", "An army name is needed when saving to files");
+        }
+
+        else if (!validateInput(txtInpArmynm.getText())){
+            Alertbox.display("Error!", "Army name can't contain these characters: " + wrongInput);
+        }
+
+        else if (fm.getArmyNames().contains(txtInpArmynm.getText())){
+            Alertbox.display("Error", "There already exist an army with the selected name in files");
+        }
+
+        else{
+
+            try{
+                String path = "src/main/resources/Armies/" + txtInpArmynm.getText() + ".csv";
+                File newArmyToFiles = new File(path);
+                fm.writeArmyToFile(newArmyToFiles, new Army(displayedUnits,txtInpArmynm.getText()));
+            } catch (Exception e){
+                Alertbox.display("Error", "Something went wrong when saving to files");
+            }
+            BtnPreMdArmies.getItems().add(txtInpArmynm.getText());
+        }
+
+    }
 
     /* public void switchToLoad(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
@@ -227,9 +309,8 @@ public class CreateBattleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn);
+        InitializeTableColumn(NameClmn, HealthClmn, AttackClmn, ArmorClmn, TypeClmn);
 
-        FileManagement fm = new FileManagement();
         BtnPreMdArmies.getItems().addAll(fm.getArmyNames());
 
         BtnUnitType.getItems().addAll(
@@ -240,10 +321,12 @@ public class CreateBattleController implements Initializable {
         );
     }
 
-    static void InitializeTableColumn(TableColumn<Unit, String> nameClmn, TableColumn<Unit, String> healthClmn, TableColumn<Unit, Integer> attackClmn, TableColumn<Unit, Integer> armorClmn) {
+    static void InitializeTableColumn(TableColumn<Unit, String> nameClmn, TableColumn<Unit, String> healthClmn, TableColumn<Unit, Integer> attackClmn, TableColumn<Unit, Integer> armorClmn, TableColumn<Unit, String> typeClmn) {
         nameClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Name"));
         healthClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Health"));
-        attackClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("attack"));
-        armorClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("armor"));
+        attackClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("Attack"));
+        armorClmn.setCellValueFactory(new PropertyValueFactory<Unit, Integer>("Armor"));
+        typeClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Type"));
+
     }
 }

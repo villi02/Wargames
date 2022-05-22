@@ -4,6 +4,7 @@ module Wargames {
     requires javafx.graphics;
 
     exports App;
+    exports Units;
     exports App.Controllers;
 
     opens App;
