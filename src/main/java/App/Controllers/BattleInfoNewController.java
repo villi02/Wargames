@@ -1,16 +1,30 @@
 package App.Controllers;
 
 import App.Temp;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BattleInfoNewController implements Initializable {
+
+    /**
+     * Initializing components
+     */
+    private Scene scene;
+    private Stage stage;
 
     @FXML
     private Label LblArmy1;
@@ -71,7 +85,23 @@ public class BattleInfoNewController implements Initializable {
 
 
     public void createBattle() {
-        
+        //Todo
+    }
+
+    public void switchToCreateBattle(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToSimulate(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Simulation.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

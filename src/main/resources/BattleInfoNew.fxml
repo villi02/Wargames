@@ -65,7 +65,8 @@
             <Label layoutX="683.0" layoutY="409.0" text=":Total Army Armor" />
             <Label layoutX="342.0" layoutY="462.0" text="Select terrain:" />
             <ComboBox fx:id="BtnTerrain" layoutX="418.0" layoutY="458.0" prefHeight="26.0" prefWidth="132.0" promptText="Terrain" />
-            <Button fx:id="BtnToSim" layoutX="831.0" layoutY="458.0" mnemonicParsing="false" text="To Simulation!" />
+            <Button fx:id="BtnToSim" layoutX="831.0" layoutY="458.0" mnemonicParsing="false" onAction="#switchToSimulate" text="To Simulation!" />
+            <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToCreateBattle" text="Return" />
          </children>
       </AnchorPane>
    </children>

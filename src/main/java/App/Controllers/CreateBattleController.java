@@ -107,6 +107,11 @@ public class CreateBattleController implements Initializable {
         return true;
     }
 
+    public void removeAll(){
+        displayedUnits.clear();
+        DisplayUnitTable(displayedUnits);
+    }
+
     public void DisplayUnitTable(ArrayList<Unit> unitArray) {
         displayedUnits = unitArray;
         ObservableList<Unit> units = FXCollections.observableArrayList(unitArray);
@@ -228,10 +233,7 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(Temp.Army2.getAllUnits());
     }
 
-    public void removeAll(){
-        displayedUnits.clear();
-        DisplayUnitTable(displayedUnits);
-    }
+
 
      public void switchToLoad(ActionEvent event) throws IOException {
         if (Temp.Army1.getName().equals("")){
@@ -289,17 +291,8 @@ public class CreateBattleController implements Initializable {
 
     }
 
-    /* public void switchToLoad(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-*/
-
-    public void switchToMainMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
+    public void switchToLoadOrCreateBattle(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/LoadOrCreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

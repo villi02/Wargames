@@ -86,7 +86,7 @@
             <Label layoutX="702.0" layoutY="227.0" text="Ranged units:" />
          </children>
       </AnchorPane>
-      <Button fx:id="BtnMainMenu" layoutX="64.0" layoutY="85.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Return" />
+      <Button fx:id="BtnMainMenu" layoutX="64.0" layoutY="85.0" mnemonicParsing="false" onAction="#switchToLoadOrCreateBattle" text="Return" />
 
       
    </children>

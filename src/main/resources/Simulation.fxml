@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane maxHeight="800.0" minHeight="100" minWidth="100" prefHeight="793.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.SimulationController">
+   <children>
+      <GridPane fx:id="GridPn" gridLinesVisible="true" layoutX="91.0" layoutY="287.0" maxHeight="471.0" maxWidth="825.0" prefHeight="471.0" prefWidth="825.0">
+      </GridPane>
+      <Button fx:id="BtnTest" layoutX="476.0" layoutY="86.0" mnemonicParsing="false" onAction="#testPaint" text="Button" />
+   </children>
+</AnchorPane>

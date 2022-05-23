@@ -29,7 +29,7 @@ public class WargamesApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Simulation.fxml"));
         primaryStage.setTitle("Wargames");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
