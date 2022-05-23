@@ -10,11 +10,16 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -37,8 +42,8 @@ public class SimulationController implements Initializable {
     private HashMap<Integer, Node> coordinateLookUp = new HashMap<>();
     private int rMultiplier = 103;
     private int cMultiplier = 97;
-    private int ARMY1SIZE = testArmy.getAllUnits().size();        //Temp.TempBattle.getArmyOne().getAllUnits().size();
-    private int ARMY2SIZE = testArmy.getAllUnits().size();        //Temp.TempBattle.getArmyTwo().getAllUnits().size();
+    private int ARMY1SIZE = Temp.TempBattle.getArmyOne().getAllUnits().size();
+    private int ARMY2SIZE = Temp.TempBattle.getArmyTwo().getAllUnits().size();
 
     double recLength;
     double recHeight;
@@ -98,23 +103,39 @@ public class SimulationController implements Initializable {
             GridPn.setValignment(rec, VPos.CENTER);
             coordinateLookUp.put(103*this.middleClmn + 97*i, rec);
         }
+
+        //Set grid Background
+
     }
 
     public void displayArmy1() {
 
         int unitsPlacedArmy1 = 0;
+        Shape icon = null;
         while (ARMY1SIZE > unitsPlacedArmy1){
             for (int i = this.middleClmn-2; i > 0; i--){
                 for (int j = 0; j < this.numRows; j++){
-                    Rectangle rec = new Rectangle(this.recLength*3/4, this.recHeight*3/4);
-                    rec.setFill(Color.valueOf("#FF5F1F"));
+                    try {
+                        if (Temp.TempBattle.getArmyOne().getAllUnits().get(unitsPlacedArmy1).getType().equals("Commander")) {
+                            icon = new Circle((this.recLength/2), Color.valueOf("#FF5F1F"));
+                        }
+                        else{
+                            icon = new Rectangle(this.recLength, this.recHeight,Color.valueOf("#FF5F1F"));
+                        }
+                    } catch(Exception e){
+                        break;
+                    }
+
+                    //icon = new Rectangle(this.recLength, this.recHeight);
+                    assert icon != null;
                     if (unitsPlacedArmy1 == ARMY1SIZE){
                         break;
                     }
-                    GridPn.add(rec, i, j);
-                    GridPn.setHalignment(rec, HPos.CENTER);
-                    GridPn.setValignment(rec, VPos.CENTER);
-                    coordinateLookUp.put(103*j + 97*j, rec);
+                    icon.toFront();
+                    GridPn.add(icon, i, j);
+                    GridPn.setHalignment(icon, HPos.CENTER);
+                    GridPn.setValignment(icon, VPos.CENTER);
+                    coordinateLookUp.put(103*j + 97*j, icon);
                     unitsPlacedArmy1++;
 
                 }
@@ -125,20 +146,20 @@ public class SimulationController implements Initializable {
     public void displayArmy2() {
 
 
-        int unitsPlacedArmy1 = 0;
-        while (ARMY2SIZE > unitsPlacedArmy1){
+        int unitsPlacedArmy2 = 0;
+        while (ARMY2SIZE > unitsPlacedArmy2){
             for (int i = this.middleClmn; i < numColumns; i++){
                 for (int j = 0; j < numRows; j++){
                     Rectangle rec = new Rectangle(this.recLength, this.recHeight);
                     rec.setFill(Color.valueOf("#82FF06"));
-                    if (unitsPlacedArmy1 == ARMY2SIZE){
+                    if (unitsPlacedArmy2 == ARMY2SIZE){
                         break;
                     }
                     GridPn.add(rec, i, j);
                     GridPn.setHalignment(rec, HPos.CENTER);
                     GridPn.setValignment(rec, VPos.CENTER);
                     coordinateLookUp.put(103*j + 97*j, rec);
-                    unitsPlacedArmy1++;
+                    unitsPlacedArmy2++;
 
                 }
             }
@@ -149,8 +170,8 @@ public class SimulationController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setVariables();
         setupGrid();
-        Temp.TempBattle.setArmyOne(testArmy);
-        Temp.TempBattle.setArmyTwo(testArmy);
+        Temp.TempBattle.setArmyOne(Temp.TempBattle.getArmyOne());
+        Temp.TempBattle.setArmyTwo(Temp.TempBattle.getArmyTwo());
         displayArmy1();
         displayArmy2();
     }

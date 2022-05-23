@@ -159,11 +159,8 @@ public class Battle {
     public Army simulate(Terrain terrain){
         myState = State.values()[random.nextInt( 2)];
 
-        System.out.println("First attacking" + myState);
         Army armyOneCopy = new Army(this.armyOne);
-        System.out.println("Armycopy 1 size:" + armyOneCopy.getAllUnits().size());
         Army armyTwoCopy = new Army(this.armyTwo);
-        System.out.println("Armycopy 2 size:" + armyTwoCopy.getAllUnits().size());
 
         while (armyOneCopy.hasUnits() && armyTwoCopy.hasUnits())
         {
@@ -191,9 +188,9 @@ public class Battle {
             }
         }
         if (armyOneCopy.hasUnits()){
-            return armyOne;
+            return armyOneCopy;
         }
-        return armyTwo;
+        return armyTwoCopy;
     }
 
     /**
