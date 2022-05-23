@@ -1,6 +1,9 @@
 package App.Controllers;
 
+import App.Alertbox;
 import App.Temp;
+import Units.Terrain;
+import Units.Unit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,9 +86,39 @@ public class BattleInfoNewController implements Initializable {
     @FXML
     private ComboBox BtnTerrain;
 
+    public void setTerrain() {
+        switch(BtnTerrain.getValue().toString()){
+            case "Hills" -> Temp.terrain = Terrain.HILL;
+            case "Plains" -> Temp.terrain = Terrain.PlAINS;
+            case "Forest" -> Temp.terrain = Terrain.STANDARD_TERRAIN;
+            case "Dynamic (Time-wise)" -> Temp.terrain = Terrain.DYNAMIC_TIME;
+            case "Dynamic (Space-wise)" -> Temp.terrain = Terrain.DYNAMIC_SPACE;
+        }
+    }
 
-    public void createBattle() {
-        //Todo
+    public Boolean createBattle() {
+        try {
+            //Check if army1 has name
+            if (Temp.Army1.getName().equals("")){
+                Temp.Army1.setName("Army1");
+            }
+            // Check if army2 has name
+            if (Temp.Army2.getName().equals("")){
+                Temp.Army2.setName("Army2");
+            }
+            //Check if no terrain is provided
+            if (BtnTerrain.getValue().equals(null)){
+                Temp.terrain = Terrain.STANDARD_TERRAIN;
+            }
+
+            // Set up battle
+            Temp.TempBattle.setArmyOne(Temp.Army1);
+            Temp.TempBattle.setArmyTwo(Temp.Army2);
+            Temp.TempBattle.setTerrain(Temp.terrain);
+        } catch (Exception e){
+            return false;
+        }
+        return true;
     }
 
     public void switchToCreateBattle(ActionEvent event) throws IOException {
@@ -97,11 +130,16 @@ public class BattleInfoNewController implements Initializable {
     }
 
     public void switchToSimulate(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Simulation.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (!createBattle()){
+            Alertbox.display("Error", "Something went wrong when creating battle");
+        }
+        else {
+            Parent root = FXMLLoader.load(getClass().getResource("/Simulation.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @Override
@@ -133,16 +171,16 @@ public class BattleInfoNewController implements Initializable {
         txtInp2TotRngd.setText(String.valueOf(Temp.Army2.getRangedUnits().size()));
 
         // Add the total health of armies to textfield
-        txtInp1TotArmyHlth.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(unit -> unit.getHealth()).sum()));
-        txtInp2TotArmyHlth.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(unit -> unit.getHealth()).sum()));
+        txtInp1TotArmyHlth.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(Unit::getHealth).sum()));
+        txtInp2TotArmyHlth.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(Unit::getHealth).sum()));
 
         // Add the total Attack of armies to textfield
-        txtInp1TotArmyAttk.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(unit -> unit.getAttack()).sum()));
-        txtInp2TotArmyAttk.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(unit -> unit.getAttack()).sum()));
+        txtInp1TotArmyAttk.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(Unit::getAttack).sum()));
+        txtInp2TotArmyAttk.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(Unit::getAttack).sum()));
 
         // Add the total Armor to textfield
-        txtInp1TotArmyArmr.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(unit -> unit.getArmor()).sum()));
-        txtInp2TotArmyArmr.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(unit -> unit.getArmor()).sum()));
+        txtInp1TotArmyArmr.setText(String.valueOf(Temp.Army1.getAllUnits().stream().mapToInt(Unit::getArmor).sum()));
+        txtInp2TotArmyArmr.setText(String.valueOf(Temp.Army2.getAllUnits().stream().mapToInt(Unit::getArmor).sum()));
 
         // Add terrain options
         BtnTerrain.getItems().addAll(

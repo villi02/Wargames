@@ -65,9 +65,29 @@ public class Battle {
         this.armyTwo = army2;
     }
 
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
+
+    /**
+     * A method to retrieve army1
+     * @return army1 as an Army
+     */
+    public Army getArmyOne(){
+        return this.armyOne;
+    }
+
+    /**
+     * A method to retrieve army2
+     * @return army2 as an Army
+     */
+    public Army getArmyTwo(){
+        return this.armyTwo;
+    }
+
     /**
      * A method to simulate a battle between two armies
-     * @return An Army as the victorious Army
+     * @return The victorious Army as an Army
      */
     public Army simulate(){
         myState = State.values()[random.nextInt( 2)];
