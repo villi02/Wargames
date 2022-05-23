@@ -123,6 +123,10 @@ public class Battle {
             defender.setHealth(0);
             return false;
         }
+        if (newHealth > defender.getHealth()){
+            newHealth = defender.getHealth();
+        }
+
         defender.setHealth(newHealth);
         return true;
     }
@@ -179,7 +183,6 @@ public class Battle {
      * @param terrain The terrain as a Terrain
      * @return A boolean, returns false if the unit dies
      */
-    //Make sure unit cant have more health than before attack
     public boolean attack(Unit attacker, Unit defender, Terrain terrain)
     {
         int newHealth = defender.getHealth() - (attacker.getAttack() + attacker.getAttackBonus(terrain)) + (defender.getArmor() + defender.getDefenceBonus(terrain));
@@ -187,6 +190,10 @@ public class Battle {
             defender.setHealth(0);
             return false;
         }
+        if (newHealth > defender.getHealth()){
+            newHealth = defender.getHealth();
+        }
+
         defender.setHealth(newHealth);
         return true;
     }
