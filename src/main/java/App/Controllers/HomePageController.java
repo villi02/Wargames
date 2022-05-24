@@ -75,20 +75,5 @@ public class HomePageController {
         }
     }
 
-    public void ArmyInfo(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/BattleInfo.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void ChangeTxt(ActionEvent event) throws Exception {
-        FileManagement fm = new FileManagement();
-        Army army2 = fm.readArmyFromFile(new File("NewTestArmy.csv"));
-        Temp.Army2 = army2;
-        TestBtn.setText("Changed!");
-
-    }
 
 }

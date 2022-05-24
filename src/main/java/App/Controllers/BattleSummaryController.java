@@ -143,7 +143,7 @@ public class BattleSummaryController implements Initializable {
             txtInp2TotUnits.setText(String.valueOf(army2AfterBattle.getAllUnits().size()));
             txtInp1TotUnits.setText(String.valueOf(0));
 
-            txtInp2TotCvlry.setText(String.valueOf(army2AfterBattle.getAllUnits().size()));
+            txtInp2TotCvlry.setText(String.valueOf(army2AfterBattle.getCavalryUnits().size()));
             txtInp1TotCvlry.setText(String.valueOf(0));
 
             txtInp2Cmndr.setText(String.valueOf(army2AfterBattle.getCommanderUnits().size()));

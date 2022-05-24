@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" minHeight="100" minWidth="100" prefHeight="793.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.SimulationController">
+<AnchorPane maxHeight="800.0" minHeight="100" minWidth="100" prefHeight="793.0" prefWidth="1000.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.SimulationController">
    <children>
       <AnchorPane fx:id="AnchrGridBckgrnd" layoutX="86.0" layoutY="287.0" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -21,7 +21,7 @@
             <Font name="Apple Chancery" size="44.0" />
          </font>
       </Label>
-      <Label fx:id="LblArmy1" layoutX="230.0" layoutY="249.0" text="Army1">
+      <Label fx:id="LblArmy1" layoutX="209.0" layoutY="251.0" text="Army1">
          <font>
             <Font size="30.0" />
          </font>
@@ -39,6 +39,6 @@
       <Button fx:id="BtnTest" layoutX="725.0" layoutY="183.0" mnemonicParsing="false" onAction="#simulate" styleClass="generalButton" text="Simulate" />
       <Button fx:id="BtnSmry" layoutX="852.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToBattleSummary" styleClass="generalButton" text="Battle Summary" />
       <Button fx:id="BtnRtrn" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchToBattleInfo" styleClass="generalButton" text="Return" />
-      <Button fx:id="BtnRst" layoutX="642.0" layoutY="183.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <Button fx:id="BtnRst" layoutX="642.0" layoutY="183.0" mnemonicParsing="false" onAction="#reset" styleClass="generalButton" text="Reset" />
    </children>
 </AnchorPane>

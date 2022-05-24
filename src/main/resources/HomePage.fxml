@@ -37,15 +37,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="HomePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="801.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
+<AnchorPane fx:id="HomePage" maxHeight="720" maxWidth="800" minHeight="720" minWidth="800" prefHeight="720.0" prefWidth="800.0" styleClass="mainBackground" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.HomePageController">
    <children>
-      <Label layoutX="241.0" layoutY="70.0" text="Rune Escape">
+      <Label layoutX="262.0" layoutY="111.0" text="Wargames" textFill="WHITE">
          <font>
-            <Font name="Apple Chancery" size="44.0" />
+            <Font name="Apple Chancery" size="48.0" />
          </font>
       </Label>
       <Button fx:id="StartGameBtn" layoutX="191.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToLoadOrCreate" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Start Game" textFill="white" />
-      <Button fx:id="HelpBtn" layoutX="192.0" layoutY="373.0" mnemonicParsing="false" onAction="#helpButton" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Help" textFill="white" />
+      <Button fx:id="HelpBtn" layoutX="191.0" layoutY="373.0" mnemonicParsing="false" onAction="#helpButton" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Help" textFill="white" />
       <Button fx:id="ExitBtn" layoutX="191.0" layoutY="486.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Exit" textFill="white" />
    </children>
 </AnchorPane>

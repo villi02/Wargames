@@ -38,14 +38,7 @@ public class LoadOrCreateBattle {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void switchBattleInfo(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/BattleInfo.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    
 
      public void switchToLoadBattle(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/LoadBattle.fxml"));

@@ -37,16 +37,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LoadOrCreateBattle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.LoadOrCreateBattle">
+<AnchorPane fx:id="LoadOrCreateBattle" maxHeight="720" maxWidth="800" minHeight="720" minWidth="800" prefHeight="720.0" prefWidth="800.0" styleClass="mainBackground" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.LoadOrCreateBattle">
    <children>
-      <Label layoutX="241.0" layoutY="70.0" text="Rune Escape">
+      <Label layoutX="236.0" layoutY="115.0" text="Rune Escape" textFill="WHITE">
          <font>
-            <Font name="Apple Chancery" size="44.0" />
+            <Font name="Apple Chancery" size="48.0" />
          </font>
       </Label>
-      <Button id="CreateBtn" layoutX="190.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchCreateBattle" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Create new Battle" textFill="white" />
-      <Button id="LoadBtn" layoutX="190.0" layoutY="429.0" mnemonicParsing="false" onAction="#switchToLoadBattle" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Load pre-made Battle" textFill="white" />
-      <Button id="ExitBtn" layoutX="190.0" layoutY="631.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Exit" textFill="white" />
-      <Button id="LoadBtn" layoutX="190.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Return to Main Menu" textFill="white" />
+      <Button id="CreateBtn" layoutX="191.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchCreateBattle" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Create new Battle" textFill="white" />
+      <Button id="LoadBtn" layoutX="191.0" layoutY="373.0" mnemonicParsing="false" onAction="#switchToLoadBattle" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Load pre-made Battle" textFill="white" />
+      <Button id="ExitBtn" layoutX="191.0" layoutY="591.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Exit" textFill="white" />
+      <Button id="MainMenuBtn" layoutX="191.0" layoutY="486.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefHeight="60.0" prefWidth="350.0" styleClass="generalButton" text="Return to Main Menu" textFill="white" />
    </children>
 </AnchorPane>

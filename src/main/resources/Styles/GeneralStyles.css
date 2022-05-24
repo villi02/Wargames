@@ -2,8 +2,14 @@
 .generalButton {
     -fx-background-color: #624a2e;
     -fx-border-width: 2px;
+    -fx-text-fill: WHITE;
     -fx-border-color: white;
     -fx-border-radius: 3px;
+}
+
+.mainBackground {
+    -fx-background-image: url("../Images/Background.JPG");
+    -fx-text-fill: WHITE;
 }
 
 .generalButton:hover {
@@ -33,6 +39,7 @@
 
 .BoPelennorButton {
     -fx-background-color: #624a2e;
+    -fx-text-fill: WHITE;
     -fx-border-width: 2px;
     -fx-border-color: white;
     -fx-border-radius: 3px;

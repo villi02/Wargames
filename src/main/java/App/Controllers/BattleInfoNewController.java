@@ -90,9 +90,10 @@ public class BattleInfoNewController implements Initializable {
         switch(BtnTerrain.getValue().toString()){
             case "Hills" -> Temp.terrain = Terrain.HILL;
             case "Plains" -> Temp.terrain = Terrain.PlAINS;
-            case "Forest" -> Temp.terrain = Terrain.STANDARD_TERRAIN;
-            case "Dynamic (Time-wise)" -> Temp.terrain = Terrain.DYNAMIC_TIME;
-            case "Dynamic (Space-wise)" -> Temp.terrain = Terrain.DYNAMIC_SPACE;
+            case "Forest" -> Temp.terrain = Terrain.FOREST;
+            case "Standard Terrain" -> Temp.terrain = Terrain.STANDARD_TERRAIN;
+            //case "Dynamic (Time-wise)" -> Temp.terrain = Terrain.DYNAMIC_TIME;
+            //case "Dynamic (Space-wise)" -> Temp.terrain = Terrain.DYNAMIC_SPACE;
             default -> Temp.terrain = Terrain.STANDARD_TERRAIN;
         }
     }
@@ -196,9 +197,9 @@ public class BattleInfoNewController implements Initializable {
                 "Hills",
                 "Plains",
                 "Forest",
-                "Standard Terrain",
-                "Dynamic (Time-wise)",
-                "Dynamic (Space-wise)"
+                "Standard Terrain"
+                //"Dynamic (Time-wise)",
+                //"Dynamic (Space-wise)"
         );
     }
 }
