@@ -74,6 +74,13 @@ public class LoadBattleController {
         stage.show();
     }
 
+    /**
+     * A method to setup the armies
+     * @param army1 army1 as an Army
+     * @param army2 army2 as an Army
+     * @param terrain the terrain as a Terrain
+     * @throws Exception
+     */
     public void setupArmy(Army army1, Army army2, Terrain terrain) throws Exception {
         Temp.Army1 = new Army(army1);
         Temp.Army2 = new Army(army2);
@@ -97,6 +104,11 @@ public class LoadBattleController {
         }
     }
 
+    /**
+     * A method to handle the switch to LoadOrCreate page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
      public void switchCreateOrLoad(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/LoadOrCreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
