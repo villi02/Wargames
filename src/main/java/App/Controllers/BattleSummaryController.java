@@ -126,7 +126,7 @@ public class BattleSummaryController implements Initializable {
             txtInp2TotUnits.setText(String.valueOf(0));
 
             // Add remaining Cavalry units after battle for both sides
-            txtInp1TotCvlry.setText(String.valueOf(army1AfterBattle.getAllUnits().size()));
+            txtInp1TotCvlry.setText(String.valueOf(army1AfterBattle.getCavalryUnits().size()));
             txtInp2TotCvlry.setText(String.valueOf(0));
 
             // Add remaining Commander units for both sides

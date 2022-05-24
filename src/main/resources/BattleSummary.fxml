@@ -103,12 +103,12 @@
             <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToSimulate" styleClass="generalButton" text="Return and Reset" />
             <TextField fx:id="txtInpWnr" alignment="CENTER" editable="false" layoutX="403.0" layoutY="23.0" promptText="Winner" />
             <Label layoutX="463.0" layoutY="6.0" text="Winner:" textFill="WHITE" />
-            <Label layoutX="635.0" layoutY="417.0" text="**Not counting bonus" textFill="WHITE">
+            <Label layoutX="602.0" layoutY="400.0" text="**Not counting bonus" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label layoutX="234.0" layoutY="406.0" text="**Not counting bonus" textFill="WHITE">
+            <Label layoutX="215.0" layoutY="400.0" text="**Not counting bonus" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
