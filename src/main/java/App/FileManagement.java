@@ -85,6 +85,12 @@ public class FileManagement {
         return army;
     }
 
+    /**
+     * A method to read the army from files
+     * @param armyName the army name as a String
+     * @return the Army
+     * @throws IOException
+     */
     public Army readArmyFromFile(String armyName) throws IOException {
         Path path = Paths.get("src/main/resources/Armies");
         ArrayList<String> foundArmyPath = new ArrayList<>();
@@ -111,6 +117,10 @@ public class FileManagement {
         }
     }
 
+    /**
+     * A method to get names of all armies currently in files
+     * @return the army names as an ArrayList
+     */
     public ArrayList<String> getArmyNames() {
         ArrayList<String> armyNames = new ArrayList<>();
         Path path = Paths.get("src/main/resources/Armies");

@@ -2,10 +2,9 @@ package Factory;
 
 import Units.CavalryUnit;
 import Units.InfantryUnit;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UnitFactoryTest {
 
