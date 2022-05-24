@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" minHeight="100" minWidth="100" prefHeight="793.0" prefWidth="1000.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.SimulationController">
+<AnchorPane styleClass="mainBackground" maxHeight="800.0" minHeight="100" minWidth="100" prefHeight="793.0" prefWidth="1000.0" stylesheets="@Styles/GeneralStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controllers.SimulationController">
    <children>
       <AnchorPane fx:id="AnchrGridBckgrnd" layoutX="86.0" layoutY="287.0" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -16,29 +16,29 @@
       </GridPane>
          </children>
       </AnchorPane>
-      <Label layoutX="454.0" layoutY="40.0" text="War!">
+      <Label layoutX="454.0" layoutY="40.0" text="War!" textFill="WHITE">
          <font>
-            <Font name="Apple Chancery" size="44.0" />
+            <Font name="Apple Chancery" size="48.0" />
          </font>
       </Label>
-      <Label fx:id="LblArmy1" layoutX="209.0" layoutY="251.0" text="Army1">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="LblArmy2" layoutX="710.0" layoutY="250.0" text="Army2">
+      <Label fx:id="LblArmy1" layoutX="209.0" layoutY="251.0" text="Army1" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="480.0" layoutY="251.0" text="VS">
+      <Label fx:id="LblArmy2" layoutX="710.0" layoutY="250.0" text="Army2" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="BtnTest" layoutX="725.0" layoutY="183.0" mnemonicParsing="false" onAction="#simulate" styleClass="generalButton" text="Simulate" />
+      <Label layoutX="480.0" layoutY="251.0" text="VS" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="BtnTest" layoutX="725.0" layoutY="183.0" mnemonicParsing="false" onAction="#simulate" prefHeight="30.0" prefWidth="86.0" styleClass="generalButton" text="Simulate" />
       <Button fx:id="BtnSmry" layoutX="852.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToBattleSummary" styleClass="generalButton" text="Battle Summary" />
-      <Button fx:id="BtnRtrn" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchToBattleInfo" styleClass="generalButton" text="Return" />
-      <Button fx:id="BtnRst" layoutX="642.0" layoutY="183.0" mnemonicParsing="false" onAction="#reset" styleClass="generalButton" text="Reset" />
+      <Button fx:id="BtnRtrn" layoutX="69.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchToBattleInfo" prefHeight="30.0" prefWidth="86.0" styleClass="generalButton" text="Return" />
+      <Button fx:id="BtnRst" layoutX="609.0" layoutY="181.0" mnemonicParsing="false" onAction="#reset" prefHeight="32.0" prefWidth="86.0" styleClass="generalButton" text="Reset" textFill="WHITE" />
    </children>
 </AnchorPane>

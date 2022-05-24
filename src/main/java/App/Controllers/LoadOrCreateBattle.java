@@ -1,16 +1,12 @@
 package App.Controllers;
 
-import App.Alertbox;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +19,11 @@ public class LoadOrCreateBattle {
     private Scene scene;
     private Stage stage;
 
+    /**
+     * A method to Switch to Create page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
      public void switchCreateBattle(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -31,6 +32,11 @@ public class LoadOrCreateBattle {
         stage.show();
     }
 
+    /**
+     * A method to Switch to HomePage page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/HomePage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -38,8 +44,13 @@ public class LoadOrCreateBattle {
         stage.setScene(scene);
         stage.show();
     }
-    
 
+
+    /**
+     * A method to Switch to LoadBattle page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
      public void switchToLoadBattle(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/LoadBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

@@ -1,9 +1,7 @@
 package App.Controllers;
 
-import App.Alertbox;
 import App.Temp;
 import Units.Army;
-import Units.Terrain;
 import Units.Unit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,7 +87,11 @@ public class BattleSummaryController implements Initializable {
     @FXML
     private ComboBox BtnTerrain;
 
-
+    /**
+     * A method to Switch to Simulation page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToSimulate(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Simulation.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -101,34 +103,44 @@ public class BattleSummaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Set labels
         LblArmy1.setText(Temp.Army1.getName());
         LblArmy2.setText(Temp.Army2.getName());
 
+        // Set text inn winner textfield
         txtInpWnr.setText(Temp.winner.getName());
 
+        // Check if army1 is winner
         if (Temp.winner.getName().equals(Temp.TempBattle.getArmyOne().getName())){
             Army army1AfterBattle = Temp.winner;
             Army army1BeforeBattle = Temp.TempBattle.getArmyOne();
             Army army2 = Temp.TempBattle.getArmyTwo();
 
+            // Add total remaining units for both sides
             txtInp1TotUnits.setText(String.valueOf(army1AfterBattle.getAllUnits().size()));
             txtInp2TotUnits.setText(String.valueOf(0));
 
+            // Add remaining Cavalry units after battle for both sides
             txtInp1TotCvlry.setText(String.valueOf(army1AfterBattle.getAllUnits().size()));
             txtInp2TotCvlry.setText(String.valueOf(0));
 
+            // Add remaining Commander units for both sides
             txtInp1Cmndr.setText(String.valueOf(army1AfterBattle.getCommanderUnits().size()));
             txtInp2Cmndr.setText(String.valueOf(0));
 
+            // Add remaining Infantry units for both sides
             txtInp1TotIntry.setText(String.valueOf(army1AfterBattle.getInfantryUnits().size()));
             txtInp2TotIntry.setText(String.valueOf(0));
 
+            // Add remaining Ranged units for both sides
             txtInp1TotRngd.setText(String.valueOf(army1AfterBattle.getRangedUnits().size()));
             txtInp2TotRngd.setText(String.valueOf(0));
 
+            // Add Remaining health
             txtInp1TotArmyHlth.setText(String.valueOf(army1AfterBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum()));
             txtInp2TotArmyHlth.setText(String.valueOf(0));
 
+            // Calculate and add the damage dealt
             int healthBeforeArmy1 = army1BeforeBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum();
             int healthAfterArmy1 = army1AfterBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum();
             int healthBeforeArmy2 = army2.getAllUnits().stream().mapToInt(Unit::getHealth).sum();
@@ -140,24 +152,30 @@ public class BattleSummaryController implements Initializable {
             Army army1 = Temp.TempBattle.getArmyOne();
             Army army2BeforeBattle = Temp.TempBattle.getArmyTwo();
 
+            // Add total remaining units for both sides
             txtInp2TotUnits.setText(String.valueOf(army2AfterBattle.getAllUnits().size()));
             txtInp1TotUnits.setText(String.valueOf(0));
-
+            // Add total remaining Cavalry units for both sides
             txtInp2TotCvlry.setText(String.valueOf(army2AfterBattle.getCavalryUnits().size()));
             txtInp1TotCvlry.setText(String.valueOf(0));
 
+            // Add total remaining Commander units for both sides
             txtInp2Cmndr.setText(String.valueOf(army2AfterBattle.getCommanderUnits().size()));
             txtInp1Cmndr.setText(String.valueOf(0));
 
+            // Add total remaining Infantry units for both sides
             txtInp2TotIntry.setText(String.valueOf(army2AfterBattle.getInfantryUnits().size()));
             txtInp1TotIntry.setText(String.valueOf(0));
 
+            // Add total remaining Ranged units for both sides
             txtInp2TotRngd.setText(String.valueOf(army2AfterBattle.getRangedUnits().size()));
             txtInp1TotRngd.setText(String.valueOf(0));
 
+            // Add Remaining health
             txtInp2TotArmyHlth.setText(String.valueOf(army2AfterBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum()));
             txtInp1TotArmyHlth.setText(String.valueOf(0));
 
+            // Calculate and add the damage dealt
             int healthBeforeArmy2 = army2BeforeBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum();
             int healthAfterArmy2 = army2AfterBattle.getAllUnits().stream().mapToInt(Unit::getHealth).sum();
             int healthBeforeArmy1 = army1.getAllUnits().stream().mapToInt(Unit::getHealth).sum();

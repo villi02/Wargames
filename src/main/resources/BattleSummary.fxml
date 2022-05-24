@@ -37,13 +37,34 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="190.0" layoutY="114.0" text="Units remaining:" textFill="WHITE" />
-            <Label layoutX="118.0" layoutY="203.0" text="Commander Units remaining:" textFill="WHITE" />
-            <Label layoutX="145.0" layoutY="162.0" text="Cavalry Units remaining:" textFill="WHITE" />
-            <Label layoutX="145.0" layoutY="245.0" text="Infantry Units remaining:" textFill="WHITE" />
-            <Label layoutX="138.0" layoutY="285.0" text="Ranged Units remaining:" textFill="WHITE" />
-            <Label layoutX="174.0" layoutY="325.0" text="Remaining health:" textFill="WHITE" />
-            <Label layoutX="171.0" layoutY="365.0" text="Total Damage dealt:" textFill="WHITE" />
+            <Label layoutX="183.0" layoutY="113.0" text="Units remaining:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="97.0" layoutY="202.0" text="Commander Units remaining:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="133.0" layoutY="161.0" text="Cavalry Units remaining:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="132.0" layoutY="244.0" text="Infantry Units remaining:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="130.0" layoutY="284.0" text="Ranged Units remaining:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="168.0" layoutY="324.0" text="Remaining health:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="156.0" layoutY="364.0" text="Total Damage dealt:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <TextField fx:id="txtInp2TotUnits" alignment="TOP_RIGHT" editable="false" layoutX="536.0" layoutY="110.0" prefWidth="136.0" promptText="Units left" />
             <TextField fx:id="txtInp2TotCvlry" alignment="CENTER_RIGHT" editable="false" layoutX="536.0" layoutY="158.0" prefWidth="136.0" promptText="Cavalry Units" />
             <TextField fx:id="txtInp2Cmndr" alignment="CENTER_RIGHT" editable="false" layoutX="536.0" layoutY="198.0" prefWidth="136.0" promptText="Commander Units" />
@@ -51,16 +72,47 @@
             <TextField fx:id="txtInp2TotRngd" alignment="CENTER_RIGHT" editable="false" layoutX="535.0" layoutY="280.0" prefWidth="136.0" promptText="Ranged Units" />
             <TextField fx:id="txtInp2TotArmyHlth" alignment="CENTER_RIGHT" editable="false" layoutX="535.0" layoutY="321.0" prefWidth="136.0" promptText=" Army Health" />
             <TextField fx:id="txtInp2TotArmyAttk" alignment="CENTER_RIGHT" editable="false" layoutX="535.0" layoutY="360.0" prefWidth="136.0" promptText="Damage dealt" />
-            <Label layoutX="685.0" layoutY="114.0" text=":Units left" textFill="WHITE" />
-            <Label layoutX="682.0" layoutY="162.0" text=":Cavalry Units Remaining" textFill="WHITE" />
-            <Label layoutX="682.0" layoutY="203.0" text=":Commander Units remaining" textFill="WHITE" />
-            <Label layoutX="681.0" layoutY="245.0" text=":Infantry Units remaining" textFill="WHITE" />
-            <Label layoutX="681.0" layoutY="285.0" text=":Ranged Units remaining" textFill="WHITE" />
-            <Label layoutX="683.0" layoutY="325.0" text=": Remaining Health" textFill="WHITE" />
-            <Label layoutX="683.0" layoutY="365.0" text=":Total Damage dealt" textFill="WHITE" />
-            <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToSimulate" text="Return and Reset" />
+            <Label layoutX="685.0" layoutY="114.0" text=":Units left" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="682.0" layoutY="162.0" text=":Cavalry Units Remaining" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="682.0" layoutY="203.0" text=":Commander Units remaining" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="681.0" layoutY="245.0" text=":Infantry Units remaining" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="681.0" layoutY="285.0" text=":Ranged Units remaining" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="683.0" layoutY="325.0" text=": Remaining Health" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label layoutX="683.0" layoutY="365.0" text=":Total Damage dealt" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToSimulate" styleClass="generalButton" text="Return and Reset" />
             <TextField fx:id="txtInpWnr" alignment="CENTER" editable="false" layoutX="403.0" layoutY="23.0" promptText="Winner" />
             <Label layoutX="463.0" layoutY="6.0" text="Winner:" textFill="WHITE" />
+            <Label layoutX="635.0" layoutY="417.0" text="**Not counting bonus" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="234.0" layoutY="406.0" text="**Not counting bonus" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

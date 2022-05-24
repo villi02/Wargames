@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -86,6 +85,9 @@ public class BattleInfoNewController implements Initializable {
     @FXML
     private ComboBox BtnTerrain;
 
+    /**
+     * A method to set the terrain of the battle to come
+     */
     public void setTerrain() {
         switch(BtnTerrain.getValue().toString()){
             case "Hills" -> Temp.terrain = Terrain.HILL;
@@ -98,6 +100,10 @@ public class BattleInfoNewController implements Initializable {
         }
     }
 
+    /**
+     * A method to create battle with the provided armies and Terrain
+     * @return true if successful
+     */
     public Boolean createBattle() {
         //Check if no terrain is provided, if no Terrain is provided then it is set to Standard Terrain
         try {
@@ -131,6 +137,11 @@ public class BattleInfoNewController implements Initializable {
         return true;
     }
 
+    /**
+     * A method to switch to CreateBattle page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToCreateBattle(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -139,6 +150,11 @@ public class BattleInfoNewController implements Initializable {
         stage.show();
     }
 
+    /**
+     * A method to Switch to Simulation page, also checks if the battle is valid, will stop the switch if not valid
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToSimulate(ActionEvent event) throws IOException {
         if (!createBattle()){
             Alertbox.display("Error", "Something went wrong when creating battle");
@@ -155,6 +171,7 @@ public class BattleInfoNewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Sett the Labels
         LblArmy1.setText(Temp.Army1.getName());
         LblArmy2.setText(Temp.Army2.getName());
 
