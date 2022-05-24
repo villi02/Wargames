@@ -178,8 +178,8 @@ public class BattleInfoNewController implements Initializable {
 
 
         // Add Total amount of units to textfield
-        txtInp1TotUnits.setText(String.valueOf(Temp.Army1.getAllUnits().size()));
-        txtInp2TotUnits.setText(String.valueOf(Temp.Army2.getAllUnits().size()));
+        txtInp1TotUnits.setText(String.valueOf(Temp.Army1.getSize()));
+        txtInp2TotUnits.setText(String.valueOf(Temp.Army2.getSize()));
 
         // Add Total amount of Cavalry units to textfield
         txtInp1TotCvlry.setText(String.valueOf(Temp.Army1.getCavalryUnits().size()));

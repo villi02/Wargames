@@ -104,14 +104,7 @@ class ArmyTest {
     }
 
     @Test
-    void testToString() {
-    }
-
-    @Test
-    void testEquals() {
-    }
-
-    @Test
-    void testHashCode() {
+    void getSize(){
+        assertEquals(16, elves.getSize());
     }
 }

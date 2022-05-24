@@ -1,6 +1,6 @@
 package App.Controllers;
 
-import App.FileManagement;
+
 import App.Temp;
 import Units.Army;
 import javafx.event.ActionEvent;
@@ -12,15 +12,15 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
+
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
@@ -29,10 +29,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
+
 
 public class SimulationController implements Initializable {
 
@@ -51,16 +51,13 @@ public class SimulationController implements Initializable {
     @FXML
     private Label LblArmy2;
 
-    FileManagement fm = new FileManagement();
-    Army testArmy = fm.readArmyFromFile("Nice");
-
     private final int gridHeight = 471;
     private final int gridWidth = 825;
     private HashMap<Integer, Node> coordinateLookUp = new HashMap<>();
     private int rMultiplier = 103;
     private int cMultiplier = 97;
-    private int ARMY1SIZE = Temp.TempBattle.getArmyOne().getAllUnits().size();
-    private int ARMY2SIZE = Temp.TempBattle.getArmyTwo().getAllUnits().size();
+    private int ARMY1SIZE = Temp.TempBattle.getArmyOne().getSize();
+    private int ARMY2SIZE = Temp.TempBattle.getArmyTwo().getSize();
     private ArrayList<Node> testNodes = new ArrayList<>();
 
     double recLength;
@@ -164,7 +161,7 @@ public class SimulationController implements Initializable {
 
         int unitsPlacedArmy1 = 0;
         Shape icon = null;
-        while (army1.getAllUnits().size() > unitsPlacedArmy1){
+        while (army1.getSize() > unitsPlacedArmy1){
             for (int i = this.middleClmn-2; i > 0; i--){
                 for (int j = 0; j < this.numRows; j++){
                     try {
@@ -180,7 +177,7 @@ public class SimulationController implements Initializable {
 
                     //icon = new Rectangle(this.recLength, this.recHeight);
                     assert icon != null;
-                    if (unitsPlacedArmy1 == army1.getAllUnits().size()){
+                    if (unitsPlacedArmy1 == army1.getSize()){
                         break;
                     }
                     icon.toFront();
@@ -201,15 +198,15 @@ public class SimulationController implements Initializable {
         LblArmy2.setText(army2.getName());
         int unitsPlacedArmy2 = 0;
         Shape icon = null;
-        while (army2.getAllUnits().size() > unitsPlacedArmy2){
+        while (army2.getSize() > unitsPlacedArmy2){
             for (int i = this.middleClmn; i < numColumns; i++){
                 for (int j = 0; j < numRows; j++){
                     try {
                         if (army2.getAllUnits().get(unitsPlacedArmy2).getType().equals("Commander")) {
-                            icon = new Circle((this.recLength/2), Color.valueOf("#82FF06"));
+                            icon = new Circle((this.recLength/2), Color.valueOf("#DF00FE"));
                         }
                         else{
-                            icon = new Rectangle(this.recLength, this.recHeight,Color.valueOf("#82FF06"));
+                            icon = new Rectangle(this.recLength, this.recHeight,Color.valueOf("#DF00FE"));
                         }
                     } catch(Exception e){
                         break;
@@ -217,7 +214,7 @@ public class SimulationController implements Initializable {
 
                     //icon = new Rectangle(this.recLength, this.recHeight);
                     assert icon != null;
-                    if (unitsPlacedArmy2 == army2.getAllUnits().size()){
+                    if (unitsPlacedArmy2 == army2.getSize()){
                         break;
                     }
                     icon.toFront();

@@ -26,24 +26,6 @@ public class LoadBattleController {
     FileManagement fm = new FileManagement();
 
 
-    /* public void switchCreate(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/loadBattle.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-*/
-
-    /* public void switchToLoad(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/CreateBattle.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-*/
-
     /**
      * A method to handle the loading of the Battle "Battle of the Bastards"
      * @param event the event as an ActionEvent

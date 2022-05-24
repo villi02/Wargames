@@ -1,21 +1,15 @@
 package App.Controllers;
 
 import App.Alertbox;
-import App.FileManagement;
-import App.Temp;
-import Units.Army;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 
@@ -27,10 +21,12 @@ public class HomePageController {
     private Scene scene;
     private Stage stage;
 
-    @FXML
-    private Button TestBtn;
 
-
+    /**
+     * A method to handle switching page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToLoadOrCreate(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/LoadOrCreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -39,23 +35,10 @@ public class HomePageController {
         stage.show();
     }
 
-
-   /* public void switchToArmyCreator(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ArmyCreator.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-*/
-    /*public void switchToArmyCreator(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/ArmyCreator.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-*/
+    /**
+     * A method to display alertbox with potential help for the user
+     * @param event the event as an ActionEvent
+     */
     public void helpButton(ActionEvent event){
         Alertbox.display("Help","The developer is sorry that you're having problems, there's nothing he can do for you. \n - Yours truly");
     }

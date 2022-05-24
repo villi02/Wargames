@@ -100,6 +100,11 @@ public class BattleSummaryController implements Initializable {
         stage.show();
     }
 
+    /**
+     * A method to set up the textfields in the BattleSummary
+     * @param url the url as an URL
+     * @param resourceBundle the resourcebundle as a ResourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -117,7 +122,7 @@ public class BattleSummaryController implements Initializable {
             Army army2 = Temp.TempBattle.getArmyTwo();
 
             // Add total remaining units for both sides
-            txtInp1TotUnits.setText(String.valueOf(army1AfterBattle.getAllUnits().size()));
+            txtInp1TotUnits.setText(String.valueOf(army1AfterBattle.getSize()));
             txtInp2TotUnits.setText(String.valueOf(0));
 
             // Add remaining Cavalry units after battle for both sides
@@ -153,7 +158,7 @@ public class BattleSummaryController implements Initializable {
             Army army2BeforeBattle = Temp.TempBattle.getArmyTwo();
 
             // Add total remaining units for both sides
-            txtInp2TotUnits.setText(String.valueOf(army2AfterBattle.getAllUnits().size()));
+            txtInp2TotUnits.setText(String.valueOf(army2AfterBattle.getSize()));
             txtInp1TotUnits.setText(String.valueOf(0));
             // Add total remaining Cavalry units for both sides
             txtInp2TotCvlry.setText(String.valueOf(army2AfterBattle.getCavalryUnits().size()));

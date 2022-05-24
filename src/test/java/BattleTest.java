@@ -1,6 +1,7 @@
 import Units.Army;
 import Units.Battle;
 import Units.InfantryUnit;
+import Units.Terrain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ class BattleTest {
         human.add(new InfantryUnit("Footman", 100));
         human.add(new InfantryUnit("Footman", 100));
         orcish.add(new InfantryUnit("Grunt", 3));
-        assertEquals(human, test.simulate());
+        assertEquals(human.getName(), test.simulate().getName());
     }
 
     @Test
@@ -33,6 +34,21 @@ class BattleTest {
         orcish.add(new InfantryUnit("Grunt", 100));
         test.attack(human.getRandom(), orcish.getRandom());
         assertEquals(94, orcish.getRandom().getHealth());
+    }
+
+    @Test
+    void attackWithTerrain() throws Exception {
+        human.add(new InfantryUnit("Footman", 100));
+        orcish.add(new InfantryUnit("Grunt", 100));
+        test.attack(human.getRandom(), orcish.getRandom(), Terrain.FOREST);
+        assertEquals(94, orcish.getRandom().getHealth());
+    }
+
+    @Test
+    void getArmy(){
+        assertEquals(true, test.getArmyOne().equals(human));
+        assertEquals(false, test.getArmyOne().equals(orcish));
+        assertEquals(true, test.getArmyTwo().equals(orcish));
     }
 
     @Test

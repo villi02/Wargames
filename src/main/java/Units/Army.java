@@ -160,6 +160,14 @@ public class Army {
         return this.units.stream().filter(x -> x instanceof CommanderUnit).collect(Collectors.toList());
     }
 
+    /**
+     * A method to get the size of the army
+     * @return the size as an int
+     */
+    public int getSize(){
+        return this.units.size();
+    }
+
     @Override
     public String toString() {
         return "Army{" +

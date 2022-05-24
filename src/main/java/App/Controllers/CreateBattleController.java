@@ -100,6 +100,11 @@ public class CreateBattleController implements Initializable {
 
     private List<Character> wrongInput = List.of('æ','ø','å',',','.','!','-','_','+','?');
 
+    /**
+     * A method to make sure the input is valid
+     * @param input the input as a String
+     * @return true if valid
+     */
     private boolean validateInput(String input){
         for(int i=0; i<input.length(); i++){
             if(wrongInput.contains(input.charAt(i))) return false;
@@ -107,11 +112,18 @@ public class CreateBattleController implements Initializable {
         return true;
     }
 
+    /**
+     * A method to remove all the current units on display
+     */
     public void removeAll(){
         displayedUnits.clear();
         DisplayUnitTable(displayedUnits);
     }
 
+    /**
+     * A method to display units in the table
+     * @param unitArray the units as an ArrayList
+     */
     public void DisplayUnitTable(ArrayList<Unit> unitArray) {
         displayedUnits = unitArray;
         ObservableList<Unit> units = FXCollections.observableArrayList(unitArray);
@@ -134,6 +146,9 @@ public class CreateBattleController implements Initializable {
 
     }
 
+    /**
+     * A method to add the current units
+     */
     public void addUnits() {
         if (txtInpAmountUnits.getText().equals("")|| txtInpHealthUnits.getText().equals("") || txtInpNameUnits.getText().equals("")) {
             Alertbox.display("Error!", "TextField cant be blank");
@@ -190,6 +205,9 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(displayedUnits);
     }
 
+    /**
+     * A method to save the current units to army1
+     */
     public void saveToArmy1() {
         ObservableList unitsToBeAdded = UnitInoTbl.getItems();
         ArrayList<Unit> unitsToBeAddedArrayList = new ArrayList<>();
@@ -214,6 +232,9 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(Temp.Army1.getAllUnits());
     }
 
+    /**
+     * A method to display the current army1
+     */
     public void displayTempArmy1() {
         DisplayUnitTable(Temp.Army1.getAllUnits());
         try{
@@ -223,6 +244,9 @@ public class CreateBattleController implements Initializable {
         }
     }
 
+    /**
+     * A method to save the input values to army 2
+     */
     public void saveToArmy2() {
         ObservableList unitsToBeAdded = UnitInoTbl.getItems();
         ArrayList<Unit> unitsToBeAddedArrayList = new ArrayList<>();
@@ -247,6 +271,9 @@ public class CreateBattleController implements Initializable {
         DisplayUnitTable(Temp.Army2.getAllUnits());
     }
 
+    /**
+     * A method to display army2
+     */
     public void displayTempArmy2() {
         DisplayUnitTable(Temp.Army2.getAllUnits());
         try{
@@ -257,7 +284,11 @@ public class CreateBattleController implements Initializable {
     }
 
 
-
+    /**
+     * A method to handle switching to the BattleInfoNew page
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
      public void switchToLoad(ActionEvent event) throws IOException {
         if (Temp.Army1.getName().equals("")){
             Temp.Army1.setName("Army1");
@@ -279,6 +310,10 @@ public class CreateBattleController implements Initializable {
          }
     }
 
+    /**
+     * A method to insert an army from files
+     * @throws Exception
+     */
     public void insertArmyFromFile() throws Exception {
         FileManagement fm = new FileManagement();
         Army armyFromFile = new Army(fm.readArmyFromFile(BtnPreMdArmies.getValue().toString()));
@@ -287,6 +322,9 @@ public class CreateBattleController implements Initializable {
 
     }
 
+    /**
+     * A method to save an army to files
+     */
     public void saveToFiles() {
         if (txtInpArmynm.getText().equals("")) {
             Alertbox.display("Error", "An army name is needed when saving to files");
@@ -314,6 +352,11 @@ public class CreateBattleController implements Initializable {
 
     }
 
+    /**
+     * A method to handle the switchin of scenes to LoadOrCreateBattle
+     * @param event the event as an ActionEvent
+     * @throws IOException
+     */
     public void switchToLoadOrCreateBattle(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/LoadOrCreateBattle.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -337,6 +380,14 @@ public class CreateBattleController implements Initializable {
         );
     }
 
+    /**
+     * A method to initialize table columns
+     * @param nameClmn the name column
+     * @param healthClmn the health column
+     * @param attackClmn the attack column
+     * @param armorClmn the armor column
+     * @param typeClmn the type column
+     */
     static void InitializeTableColumn(TableColumn<Unit, String> nameClmn, TableColumn<Unit, String> healthClmn, TableColumn<Unit, Integer> attackClmn, TableColumn<Unit, Integer> armorClmn, TableColumn<Unit, String> typeClmn) {
         nameClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Name"));
         healthClmn.setCellValueFactory(new PropertyValueFactory<Unit, String>("Health"));
