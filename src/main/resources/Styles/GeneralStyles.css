@@ -65,3 +65,7 @@
     -fx-border-radius: 1px;
     -fx-text-fill: #ffffff00;
 }
+
+.BattleSummaryPane {
+    -fx-background-image: url("../Images/BattleSummary.JPG");
+}

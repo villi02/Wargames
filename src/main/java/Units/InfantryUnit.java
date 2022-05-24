@@ -69,6 +69,16 @@ public class InfantryUnit extends Unit {
     }
 
     /**
+     * A copy constructor
+     * @param unit the unit to be copied as a InfantryUnit
+     * @throws Exception
+     */
+    public InfantryUnit(InfantryUnit unit) throws Exception {
+        super(unit.getName(), unit.getHealth(), unit.getAttack(), unit.getArmor());
+        this.type = "Infantry";
+    }
+
+    /**
      * A standard method for getting the defence bonus, for when no terrain is provided
      * @return The defence bonus
      */

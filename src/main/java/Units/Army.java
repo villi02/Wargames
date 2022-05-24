@@ -31,12 +31,18 @@ public class Army {
      * Copy constructor for an army object
      * @param army the army you want to copy
      */
-    public Army(Army army){
+    public Army(Army army) throws Exception {
         this.name = army.getName();
         this.units = new ArrayList<>();
         for (Unit unit: army.getAllUnits())
         {
-            this.units.add(unit);
+            switch(unit.getType()){
+                case "Cavalry" -> this.units.add(new CavalryUnit((CavalryUnit) unit));
+                case "Commander" -> this.units.add(new CommanderUnit((CommanderUnit) unit));
+                case "Infantry" -> this.units.add(new InfantryUnit((InfantryUnit) unit));
+                case "Ranged" -> this.units.add(new RangedUnit((RangedUnit) unit));
+
+            }
         }
     }
 

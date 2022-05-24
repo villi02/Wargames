@@ -97,14 +97,11 @@ public class Battle {
      * A method to simulate a battle between two armies
      * @return The victorious Army as an Army
      */
-    public Army simulate(){
+    public Army simulate() throws Exception {
         myState = State.values()[random.nextInt( 2)];
 
-        System.out.println("First attacking" + myState);
         Army armyOneCopy = new Army(this.armyOne);
-        System.out.println("Armycopy 1 size:" + armyOneCopy.getAllUnits().size());
         Army armyTwoCopy = new Army(this.armyTwo);
-        System.out.println("Armycopy 2 size:" + armyTwoCopy.getAllUnits().size());
 
         while (armyOneCopy.hasUnits() && armyTwoCopy.hasUnits())
         {
@@ -164,7 +161,7 @@ public class Battle {
      * @return An Army as the victorious Army
      * @param terrain The terrain as a Terrain
      */
-    public Army simulate(Terrain terrain){
+    public Army simulate(Terrain terrain) throws Exception {
         myState = State.values()[random.nextInt( 2)];
 
         Army armyOneCopy = new Army(this.armyOne);

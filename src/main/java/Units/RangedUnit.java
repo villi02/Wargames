@@ -36,6 +36,16 @@ public class RangedUnit extends Unit{
     }
 
     /**
+     * A copy constructor
+     * @param unit the unit to be copied as a RangedUnit
+     * @throws Exception
+     */
+    public RangedUnit(RangedUnit unit) throws Exception {
+        super(unit.getName(), unit.getHealth(), unit.getAttack(), unit.getArmor());
+        this.type = "Ranged";
+    }
+
+    /**
      * A method for getting the attack bonus of a ranged unit, when terrain is implemented
      * @param terrain the terrain as a Terrain
      * @return the attack bonus as an int

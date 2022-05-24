@@ -11,6 +11,7 @@ public class Temp {
     public static Battle TempBattle = new Battle();
     public static Army Army1 = new Army();
     public static Army Army2 = new Army();
+    public static Army winner = new Army();
     public static ArrayList<Unit> newUnits = new ArrayList<>();
     public static Terrain terrain;
 }

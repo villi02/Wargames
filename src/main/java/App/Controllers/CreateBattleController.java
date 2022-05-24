@@ -268,7 +268,7 @@ public class CreateBattleController implements Initializable {
          }
     }
 
-    public void insertArmyFromFile() throws IOException {
+    public void insertArmyFromFile() throws Exception {
         FileManagement fm = new FileManagement();
         Army armyFromFile = new Army(fm.readArmyFromFile(BtnPreMdArmies.getValue().toString()));
         DisplayUnitTable(armyFromFile.getAllUnits());

@@ -27,6 +27,16 @@ public class CavalryUnit extends Unit{
     }
 
     /**
+     * A copy constructor
+     * @param unit the unit to be copied as a CavalryUnit
+     * @throws Exception
+     */
+    public CavalryUnit(CavalryUnit unit) throws Exception {
+        super(unit.getName(), unit.getHealth(), unit.getAttack(),  unit.getArmor());
+        this.type = "Cavalry";
+    }
+
+    /**
      * A simplified constructor for the CavalryUnit
      * @param name the name of the Unit as a string
      * @param health the health points of a unit as an int

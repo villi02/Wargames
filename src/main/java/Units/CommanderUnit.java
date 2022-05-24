@@ -27,6 +27,16 @@ public class CommanderUnit extends CavalryUnit{
     }
 
     /**
+     * A copy constructor
+     * @param unit the unit to be copied as a CommanderUnit
+     * @throws Exception
+     */
+    public CommanderUnit(CommanderUnit unit) throws Exception {
+        super(unit.getName(), unit.getHealth(), unit.getAttack(), unit.getArmor());
+        this.type = "Commander";
+    }
+
+    /**
      * A method to get the type of the Unit
      * @return the type as a String
      */

@@ -43,9 +43,6 @@ public class SimulationController implements Initializable {
     private GridPane GridPn;
 
     @FXML
-    private AnchorPane AnchrGridBckgrnd;
-
-    @FXML
     private ImageView ImgVwTerin;
 
     @FXML
@@ -92,9 +89,9 @@ public class SimulationController implements Initializable {
         this.middleClmn = (numColumns + 1)/2;
     }
 
-    public void simulate(){
+    public void simulate() throws Exception {
         GridPn.getChildren().removeAll(testNodes);
-        Army winner = Temp.TempBattle.simulate();
+        Army winner = Temp.TempBattle.simulate(Temp.TempBattle.getTerrain());
         ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/AfterBattle.JPG").toURI().toString()));
         String winnername = winner.getName();
         if (winnername.equals(Temp.TempBattle.getArmyOne().getName())){
@@ -103,6 +100,7 @@ public class SimulationController implements Initializable {
         else{
             displayArmy2(winner);
         }
+        Temp.winner = winner;
     }
 
     public void setupGrid(){
@@ -223,6 +221,14 @@ public class SimulationController implements Initializable {
 
     public void switchToBattleInfo(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/BattleInfoNew.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToBattleSummary(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/BattleSummary.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
