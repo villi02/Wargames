@@ -42,7 +42,7 @@ public class CavalryUnit extends Unit{
      * @param health the health points of a unit as an int
      */
     public CavalryUnit(String name, int health) throws Exception {
-        super(name, health, 20, 12);
+        super(name, health, 17, 12);
         this.type = "Cavalry";
     }
 

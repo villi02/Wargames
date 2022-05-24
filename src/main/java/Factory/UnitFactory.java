@@ -57,7 +57,7 @@ public class UnitFactory {
             });
             case RANGED -> IntStream.range(0, amount).forEach(i -> {
                 try {
-                    units.add(new RangedUnit(name, amount));
+                    units.add(new RangedUnit(name, health));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

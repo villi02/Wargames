@@ -89,6 +89,19 @@ public class SimulationController implements Initializable {
         this.middleClmn = (numColumns + 1)/2;
     }
 
+    public void reset(){
+        displayArmy1(Temp.TempBattle.getArmyOne());
+        displayArmy2(Temp.TempBattle.getArmyTwo());
+        switch(Temp.TempBattle.getTerrain()){
+            case HILL -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Hills.JPG").toURI().toString()));
+            case PlAINS -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Plains.JPG").toURI().toString()));
+            case FOREST -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Forest.JPG").toURI().toString()));
+            case DYNAMIC_TIME -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Multi.png").toURI().toString()));
+            case DYNAMIC_SPACE -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Multi.png").toURI().toString()));
+        }
+
+    }
+
     public void simulate() throws Exception {
         GridPn.getChildren().removeAll(testNodes);
         Army winner = Temp.TempBattle.simulate(Temp.TempBattle.getTerrain());

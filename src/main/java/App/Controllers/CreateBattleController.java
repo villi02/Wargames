@@ -131,6 +131,7 @@ public class CreateBattleController implements Initializable {
         int totalRanged = (int) unitArray.stream().filter(unit -> "Ranged".equals(unit.getType())).count();
         txtInpTotRngd.setText(String.valueOf(totalRanged));
 
+
     }
 
     public void addUnits() {
@@ -215,6 +216,11 @@ public class CreateBattleController implements Initializable {
 
     public void displayTempArmy1() {
         DisplayUnitTable(Temp.Army1.getAllUnits());
+        try{
+        txtInpArmynm.setText(Temp.Army1.getName());
+        }catch (NullPointerException e){
+            txtInpArmynm.setText("");
+        }
     }
 
     public void saveToArmy2() {
@@ -243,6 +249,11 @@ public class CreateBattleController implements Initializable {
 
     public void displayTempArmy2() {
         DisplayUnitTable(Temp.Army2.getAllUnits());
+        try{
+            txtInpArmynm.setText(Temp.Army2.getName());
+        }catch (NullPointerException e){
+            txtInpArmynm.setText("");
+        }
     }
 
 

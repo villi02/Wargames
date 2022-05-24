@@ -39,5 +39,6 @@
       <Button fx:id="BtnTest" layoutX="725.0" layoutY="183.0" mnemonicParsing="false" onAction="#simulate" styleClass="generalButton" text="Simulate" />
       <Button fx:id="BtnSmry" layoutX="852.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToBattleSummary" styleClass="generalButton" text="Battle Summary" />
       <Button fx:id="BtnRtrn" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchToBattleInfo" styleClass="generalButton" text="Return" />
+      <Button fx:id="BtnRst" layoutX="642.0" layoutY="183.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
    </children>
 </AnchorPane>

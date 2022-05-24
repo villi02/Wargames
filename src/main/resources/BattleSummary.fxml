@@ -58,7 +58,7 @@
             <Label layoutX="681.0" layoutY="285.0" text=":Ranged Units remaining" textFill="WHITE" />
             <Label layoutX="683.0" layoutY="325.0" text=": Remaining Health" textFill="WHITE" />
             <Label layoutX="683.0" layoutY="365.0" text=":Total Damage dealt" textFill="WHITE" />
-            <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToSimulate" text="Return" />
+            <Button fx:id="BtnRetrn" layoutX="41.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchToSimulate" text="Return and Reset" />
             <TextField fx:id="txtInpWnr" alignment="CENTER" editable="false" layoutX="403.0" layoutY="23.0" promptText="Winner" />
             <Label layoutX="463.0" layoutY="6.0" text="Winner:" textFill="WHITE" />
          </children>

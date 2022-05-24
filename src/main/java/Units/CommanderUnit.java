@@ -22,7 +22,7 @@ public class CommanderUnit extends CavalryUnit{
      * @param health the health points of a unit as an int
      */
     public CommanderUnit(String name, int health) throws Exception {
-        super(name, health, 25, 15);
+        super(name, health, 20, 15);
         this.type = "Commander";
     }
 
