@@ -86,6 +86,14 @@ public class Battle {
     }
 
     /**
+     * A method to return the terrain of the battle
+     * @return The terrain as a Terrain
+     */
+    public Terrain getTerrain() {
+        return this.terrain;
+    }
+
+    /**
      * A method to simulate a battle between two armies
      * @return The victorious Army as an Army
      */
@@ -124,9 +132,9 @@ public class Battle {
             }
         }
         if (armyOneCopy.hasUnits()){
-            return armyOne;
+            return armyOneCopy;
         }
-        return armyTwo;
+        return armyTwoCopy;
     }
 
     /**

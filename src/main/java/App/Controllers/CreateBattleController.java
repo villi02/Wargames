@@ -201,6 +201,12 @@ public class CreateBattleController implements Initializable {
         if (txtInpArmynm.getText().equals("") && Temp.Army1.getName().equals("")){
             Alertbox.display("Error", "Your army does not have a name, and you didn't insert an army name \n NB: Your army name will be set to 'Army1' if you do nothing");
         }
+        else if(txtInpArmynm.getText().equals(Temp.Army2.getName())){
+            Alertbox.display("Error", "Can't have the same name as army2");
+        }
+        else{
+            Temp.Army1.setName(txtInpArmynm.getText());
+        }
 
         Temp.Army1.addAll(unitsToBeAddedArrayList);
         Temp.newUnits.clear();
@@ -220,8 +226,14 @@ public class CreateBattleController implements Initializable {
             Alertbox.display("Error", "Something went wrong when saving to Army 2");
         }
 
-        if (txtInpArmynm.getText().equals("") && Temp.Army1.getName().equals("")){
+        if (txtInpArmynm.getText().equals("") && Temp.Army2.getName().equals("")){
             Alertbox.display("Error", "Your army does not have a name, and you didn't insert an army name \n NB: Your army name will be set to 'Army2' if you do nothing");
+        }
+        else if(txtInpArmynm.getText().equals(Temp.Army1.getName())){
+            Alertbox.display("Error", "Can't have the same name as army1");
+        }
+        else{
+            Temp.Army2.setName(txtInpArmynm.getText());
         }
 
         Temp.Army2.addAll(unitsToBeAddedArrayList);

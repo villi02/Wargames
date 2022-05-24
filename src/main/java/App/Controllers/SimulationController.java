@@ -3,14 +3,19 @@ package App.Controllers;
 import App.FileManagement;
 import App.Temp;
 import Units.Army;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -18,21 +23,36 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class SimulationController implements Initializable {
 
+    private Scene scene;
+    private Stage stage;
+
     @FXML
     private GridPane GridPn;
 
     @FXML
     private AnchorPane AnchrGridBckgrnd;
+
+    @FXML
+    private ImageView ImgVwTerin;
+
+    @FXML
+    private Label LblArmy1;
+
+    @FXML
+    private Label LblArmy2;
 
     FileManagement fm = new FileManagement();
     Army testArmy = fm.readArmyFromFile("Nice");
@@ -44,6 +64,7 @@ public class SimulationController implements Initializable {
     private int cMultiplier = 97;
     private int ARMY1SIZE = Temp.TempBattle.getArmyOne().getAllUnits().size();
     private int ARMY2SIZE = Temp.TempBattle.getArmyTwo().getAllUnits().size();
+    private ArrayList<Node> testNodes = new ArrayList<>();
 
     double recLength;
     double recHeight;
@@ -71,11 +92,20 @@ public class SimulationController implements Initializable {
         this.middleClmn = (numColumns + 1)/2;
     }
 
+    public void simulate(){
+        GridPn.getChildren().removeAll(testNodes);
+        Army winner = Temp.TempBattle.simulate();
+        ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/AfterBattle.JPG").toURI().toString()));
+        String winnername = winner.getName();
+        if (winnername.equals(Temp.TempBattle.getArmyOne().getName())){
+            displayArmy1(winner);
+        }
+        else{
+            displayArmy2(winner);
+        }
+    }
 
     public void setupGrid(){
-
-        AnchrGridBckgrnd.setStyle("-fx-background-color: BROWN");
-
         //Add all necessary rows
         for (int row = 0 ; row < this.numRows ; row++ ){
             RowConstraints rc = new RowConstraints();
@@ -96,27 +126,38 @@ public class SimulationController implements Initializable {
 
         // Set the middle cells as black
         for (int i = 0; i < this.numRows; i++){
-            Rectangle rec = new Rectangle(this.recLength, this.recHeight);
+            Rectangle rec = new Rectangle(this.recLength*4/3, this.recHeight*4/3);
             rec.setFill(Color.BLACK);
             GridPn.add(rec, this.middleClmn-1, i);
             GridPn.setHalignment(rec, HPos.CENTER);
             GridPn.setValignment(rec, VPos.CENTER);
             coordinateLookUp.put(103*this.middleClmn + 97*i, rec);
+
         }
 
         //Set grid Background
-
+        switch(Temp.TempBattle.getTerrain()){
+            case HILL -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Hills.JPG").toURI().toString()));
+            case PlAINS -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Plains.JPG").toURI().toString()));
+            case FOREST -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Forest.JPG").toURI().toString()));
+            case DYNAMIC_TIME -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Multi.png").toURI().toString()));
+            case DYNAMIC_SPACE -> ImgVwTerin.setImage(new Image(new File("src/main/resources/Images/Multi.png").toURI().toString()));
+        }
+        GridPn.setGridLinesVisible(true);
     }
 
-    public void displayArmy1() {
+
+    public void displayArmy1(Army army1) {
+
+        LblArmy1.setText(army1.getName());
 
         int unitsPlacedArmy1 = 0;
         Shape icon = null;
-        while (ARMY1SIZE > unitsPlacedArmy1){
+        while (army1.getAllUnits().size() > unitsPlacedArmy1){
             for (int i = this.middleClmn-2; i > 0; i--){
                 for (int j = 0; j < this.numRows; j++){
                     try {
-                        if (Temp.TempBattle.getArmyOne().getAllUnits().get(unitsPlacedArmy1).getType().equals("Commander")) {
+                        if (army1.getAllUnits().get(unitsPlacedArmy1).getType().equals("Commander")) {
                             icon = new Circle((this.recLength/2), Color.valueOf("#FF5F1F"));
                         }
                         else{
@@ -128,7 +169,7 @@ public class SimulationController implements Initializable {
 
                     //icon = new Rectangle(this.recLength, this.recHeight);
                     assert icon != null;
-                    if (unitsPlacedArmy1 == ARMY1SIZE){
+                    if (unitsPlacedArmy1 == army1.getAllUnits().size()){
                         break;
                     }
                     icon.toFront();
@@ -136,6 +177,7 @@ public class SimulationController implements Initializable {
                     GridPn.setHalignment(icon, HPos.CENTER);
                     GridPn.setValignment(icon, VPos.CENTER);
                     coordinateLookUp.put(103*j + 97*j, icon);
+                    testNodes.add(icon);
                     unitsPlacedArmy1++;
 
                 }
@@ -143,27 +185,48 @@ public class SimulationController implements Initializable {
         }
     }
 
-    public void displayArmy2() {
+    public void displayArmy2(Army army2) {
 
-
+        LblArmy2.setText(army2.getName());
         int unitsPlacedArmy2 = 0;
-        while (ARMY2SIZE > unitsPlacedArmy2){
+        Shape icon = null;
+        while (army2.getAllUnits().size() > unitsPlacedArmy2){
             for (int i = this.middleClmn; i < numColumns; i++){
                 for (int j = 0; j < numRows; j++){
-                    Rectangle rec = new Rectangle(this.recLength, this.recHeight);
-                    rec.setFill(Color.valueOf("#82FF06"));
-                    if (unitsPlacedArmy2 == ARMY2SIZE){
+                    try {
+                        if (army2.getAllUnits().get(unitsPlacedArmy2).getType().equals("Commander")) {
+                            icon = new Circle((this.recLength/2), Color.valueOf("#82FF06"));
+                        }
+                        else{
+                            icon = new Rectangle(this.recLength, this.recHeight,Color.valueOf("#82FF06"));
+                        }
+                    } catch(Exception e){
                         break;
                     }
-                    GridPn.add(rec, i, j);
-                    GridPn.setHalignment(rec, HPos.CENTER);
-                    GridPn.setValignment(rec, VPos.CENTER);
-                    coordinateLookUp.put(103*j + 97*j, rec);
-                    unitsPlacedArmy2++;
 
+                    //icon = new Rectangle(this.recLength, this.recHeight);
+                    assert icon != null;
+                    if (unitsPlacedArmy2 == army2.getAllUnits().size()){
+                        break;
+                    }
+                    icon.toFront();
+                    GridPn.add(icon, i, j);
+                    GridPn.setHalignment(icon, HPos.CENTER);
+                    GridPn.setValignment(icon, VPos.CENTER);
+                    coordinateLookUp.put(103*j + 97*j, icon);
+                    testNodes.add(icon);
+                    unitsPlacedArmy2++;
                 }
             }
         }
+    }
+
+    public void switchToBattleInfo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/BattleInfoNew.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
@@ -172,8 +235,8 @@ public class SimulationController implements Initializable {
         setupGrid();
         Temp.TempBattle.setArmyOne(Temp.TempBattle.getArmyOne());
         Temp.TempBattle.setArmyTwo(Temp.TempBattle.getArmyTwo());
-        displayArmy1();
-        displayArmy2();
+        displayArmy1(Temp.TempBattle.getArmyOne());
+        displayArmy2(Temp.TempBattle.getArmyTwo());
     }
 
 }

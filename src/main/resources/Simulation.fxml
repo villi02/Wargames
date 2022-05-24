@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
@@ -9,6 +11,7 @@
    <children>
       <AnchorPane fx:id="AnchrGridBckgrnd" layoutX="86.0" layoutY="287.0" prefHeight="200.0" prefWidth="200.0">
          <children>
+            <ImageView fx:id="ImgVwTerin" fitHeight="471" fitWidth="825" pickOnBounds="true" preserveRatio="false" />
             <GridPane fx:id="GridPn" gridLinesVisible="true" maxHeight="471.0" maxWidth="825.0" prefHeight="471.0" prefWidth="825.0">
       </GridPane>
          </children>
@@ -33,5 +36,8 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Button fx:id="BtnTest" layoutX="725.0" layoutY="183.0" mnemonicParsing="false" onAction="#simulate" styleClass="generalButton" text="Simulate" />
+      <Button fx:id="BtnSmry" layoutX="852.0" layoutY="181.0" mnemonicParsing="false" styleClass="generalButton" text="Battle Summary" />
+      <Button fx:id="BtnRtrn" layoutX="97.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchToBattleInfo" styleClass="generalButton" text="Return" />
    </children>
 </AnchorPane>

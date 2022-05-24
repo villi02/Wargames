@@ -93,10 +93,21 @@ public class BattleInfoNewController implements Initializable {
             case "Forest" -> Temp.terrain = Terrain.STANDARD_TERRAIN;
             case "Dynamic (Time-wise)" -> Temp.terrain = Terrain.DYNAMIC_TIME;
             case "Dynamic (Space-wise)" -> Temp.terrain = Terrain.DYNAMIC_SPACE;
+            default -> Temp.terrain = Terrain.STANDARD_TERRAIN;
         }
     }
 
     public Boolean createBattle() {
+        //Check if no terrain is provided, if no Terrain is provided then it is set to Standard Terrain
+        try {
+            if (BtnTerrain.getValue().equals(null)) {
+                Temp.terrain = Terrain.STANDARD_TERRAIN;
+            } else {
+                setTerrain();
+            }
+        } catch (NullPointerException e){
+            Temp.terrain = Terrain.STANDARD_TERRAIN;
+        }
         try {
             //Check if army1 has name
             if (Temp.Army1.getName().equals("")){
@@ -106,10 +117,8 @@ public class BattleInfoNewController implements Initializable {
             if (Temp.Army2.getName().equals("")){
                 Temp.Army2.setName("Army2");
             }
-            //Check if no terrain is provided
-            if (BtnTerrain.getValue().equals(null)){
-                Temp.terrain = Terrain.STANDARD_TERRAIN;
-            }
+
+
 
             // Set up battle
             Temp.TempBattle.setArmyOne(Temp.Army1);
